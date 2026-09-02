@@ -1,0 +1,130 @@
+generated: '2026-09-02'
+method: derived
+status: candidate
+source: graphql/venn-tenant.graphql
+note: >-
+  Venn ships NO MCP server. Searched: venn.city and every Venn subdomain
+  (api., docs., dashboard., legal.), the public @venncity npm scope (20 packages,
+  none MCP-related), and github.com/venn-city. `POST /mcp` on api.venn.city returns
+  403 like every other non-stage path. The tools below are a CANDIDATE surface
+  derived by API Evangelist from Venn's real GraphQL fields — they are what an MCP
+  server over this API could expose, not something Venn publishes. No `MCPServer`
+  pointer is emitted in apis.yml, because emitting one would assert an agent
+  surface that does not exist.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+server:
+  name: venn
+  transport: null
+  url: null
+searched:
+  - url: https://api.venn.city/mcp
+    status: 403
+  - url: https://venn.city/mcp
+    status: 404
+  - registry: npm
+    query: '@venncity scope, 20 packages'
+    result: no MCP server package
+  - url: https://github.com/venn-city
+    status: 200
+    result: 15 public repos, none MCP-related
+candidate_tools:
+  - name: list_buildings
+    description: List buildings in a portfolio or community.
+    source_operation: 'graphql/venn-tenant.graphql#Query.buildings'
+    write: false
+  - name: list_units
+    description: List units, optionally filtered by building.
+    source_operation: 'graphql/venn-tenant.graphql#Query.units'
+    write: false
+  - name: list_residents
+    description: Page residents of a building or community.
+    source_operation: 'graphql/venn-tenant.graphql#Query.usersConnection'
+    write: false
+  - name: get_member_profile
+    description: Read a resident's member profile.
+    source_operation: 'graphql/venn-tenant.graphql#Query.memberProfile'
+    write: false
+  - name: list_lease_contracts
+    description: List lease contracts.
+    source_operation: 'graphql/venn-tenant.graphql#Query.leaseContracts'
+    write: false
+  - name: list_real_estate_listings
+    description: List published unit listings.
+    source_operation: 'graphql/venn-tenant.graphql#Query.realEstateListings'
+    write: false
+  - name: list_applications
+    description: List leasing applications.
+    source_operation: 'graphql/venn-tenant.graphql#Query.applications'
+    write: false
+  - name: list_bills
+    description: List resident bills.
+    source_operation: 'graphql/venn-tenant.graphql#Query.bills'
+    write: false
+  - name: list_payment_transactions
+    description: List payment transactions.
+    source_operation: 'graphql/venn-tenant.graphql#Query.paymentTransactions'
+    write: false
+  - name: list_service_product_orders
+    description: List service and product orders.
+    source_operation: 'graphql/venn-tenant.graphql#Query.serviceProductOrders'
+    write: false
+  - name: list_events
+    description: List community events.
+    source_operation: 'graphql/venn-tenant.graphql#Query.events'
+    write: false
+  - name: list_shared_spaces
+    description: List bookable shared spaces.
+    source_operation: 'graphql/venn-tenant.graphql#Query.sharedSpaces'
+    write: false
+  - name: get_available_time_slots
+    description: Read real bookable slots for a resource and date range.
+    source_operation: 'graphql/venn-tenant.graphql#Query.getTimeSlotsForDates'
+    write: false
+  - name: get_broadcast_audience_count
+    description: Size a broadcast audience before sending.
+    source_operation: 'graphql/venn-tenant.graphql#Query.getBroadcastAudienceUserCount'
+    write: false
+  - name: list_surveys
+    description: List surveys and their results.
+    source_operation: 'graphql/venn-tenant.graphql#Query.surveys'
+    write: false
+  - name: book_time_slots
+    description: Book one or more slots in a shared space.
+    source_operation: 'graphql/venn-tenant.graphql#Mutation.bookTimeSlots'
+    write: true
+    reversal: 'Mutation.cancelBooking'
+    idempotent: false
+  - name: cancel_booking
+    description: Cancel a shared-space booking.
+    source_operation: 'graphql/venn-tenant.graphql#Mutation.cancelBooking'
+    write: true
+  - name: create_broadcast
+    description: Create a community broadcast (use isDraft first).
+    source_operation: 'graphql/venn-tenant.graphql#Mutation.createBroadcast'
+    write: true
+    idempotent: false
+    caution: No idempotency key. A retry is a second broadcast.
+  - name: send_notification
+    description: Send a notification to a user.
+    source_operation: 'graphql/venn-tenant.graphql#Mutation.createNotification'
+    write: true
+    idempotent: true
+    idempotency_key: idempotencyKey
+coverage:
+  graphql_query_fields: 320
+  graphql_mutation_fields: 357
+  candidate_tools: 19
+  published_tools: 0
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://api.venn.city/mcp
+      status: 403
+    - url: https://api.venn.city/production/graphql
+      status: 200

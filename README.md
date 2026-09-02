@@ -64,5 +64,18 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Venn is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/venn_stock/
+Venn is a multifamily resident-experience operating system for owner-operators of rental housing.
+Founded in 2016 and co-headquartered in New York and Tel Aviv, it merges a resident mobile app, an
+operator dashboard and a single data layer over the resident lifecycle — leasing, onboarding, living,
+renewals, maintenance, payments, community programming and an AI concierge — synced with the property
+management system of record (Yardi, RealPage, Entrata, AppFolio).
+
+Venn runs an unversioned Apollo Federation GraphQL API at `api.venn.city` with anonymous introspection
+enabled: 1,983 types, 320 query fields and 357 mutation fields. The contract is discoverable; the data
+is not (an unauthenticated read returns `VennUnknownError`), and there is no developer portal, API
+reference, OpenAPI, webhook catalog, MCP server, published rate limit or published price.
+
+- Website: https://venn.city/
+- Release notes: https://docs.venn.city/
+- GitHub: https://github.com/venn-city
+- Secondary-market listing: https://forgeglobal.com/venn_stock/

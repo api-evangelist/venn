@@ -1,0 +1,91 @@
+generated: '2026-09-02'
+method: searched
+source: https://registry.npmjs.org/@venncity%2Fextension-sdk
+note: >-
+  Venn ships one embeddable-surface library: `@venncity/extension-sdk`, the bridge
+  for Venn Extensions — first-party web apps hosted inside the Venn mobile app
+  (React Native WebView) or the Venn web app (iframe). It is not a UI component
+  library; it is the host/guest postMessage contract that lets an embedded page
+  behave like part of the Venn app. Everything below is quoted or read from the
+  package's own public README on the npm registry; the GitHub repository it names
+  is private. No hosted/prebuilt UI widgets, element libraries or embeddable
+  dashboards are published by Venn.
+families:
+  - family: venn-extensions
+    kind: embedded-app-bridge
+    description: >-
+      A web app loaded inside the Venn mobile app (React Native WebView) or the Venn
+      web app (iframe), receiving app context, the resident's auth token, native
+      navigation and telemetry over a postMessage bridge. One import works in both
+      hosts; the transport difference is hidden.
+    loader:
+      package: '@venncity/extension-sdk'
+      registry: npm
+      version: 0.1.1
+      published: '2026-08-25'
+      install: npm install @venncity/extension-sdk
+      entrypoints:
+        - '@venncity/extension-sdk/guest'
+        - '@venncity/extension-sdk/host'
+    transports:
+      - react-native-webview
+      - web-iframe
+    guest_api:
+      - name: connectVennExtension()
+        returns: the connected bridge handle
+      - name: getAppContext()
+        returns: >-
+          user, leaseContract, community, building, unit, appPackageId, locale,
+          config — delivered synchronously in the handshake, fixed per load
+      - name: getResidentAuthToken()
+        returns: '{ token, refreshToken } — the resident''s existing Cognito token'
+      - name: navigateToPage(ExtensionPage)
+        note: opens a native app page; the argument is an enum, not a free string
+      - name: navigateBack()
+      - name: setBackState(bool)
+      - name: onBack(cb)
+      - name: invokeElevatedPermissions(reason)
+        note: step-up 2FA request; README states it is stubbed today
+      - name: telemetry(level, message, extra)
+      - name: close()
+    host_api:
+      - createHostBridge({ send, getContext, getAuth, onNavigate, onNavigateBack, onTelemetry, onClose, onElevate, onPeerConnected })
+      - hostToGuestScript(envelope)
+      - bridge.handleRawMessage(raw)
+    security_model:
+      first_party_only: true
+      quote: >-
+        "First-party by design: no capability model, no origin allow-list, no
+        bespoke token. The resident's existing Cognito token is delivered over the
+        bridge, and the Venn tenant GraphQL API is the authority that validates it
+        (a 401 means 'ask the host for a fresh one')."
+      token_handling: >-
+        README states the token lives in memory only — never a URL, localStorage or
+        a log line.
+      origin_check: >-
+        On web, the host validates the guest's origin against the iframe URL's
+        origin.
+      implication: >-
+        This surface is not open to third parties. It is the mechanism Venn uses to
+        embed its own additional apps inside its resident app, which is why there is
+        no capability model or allow-list.
+    versioning:
+      protocol_version: >-
+        Integer PROTOCOL_VERSION on the wire is the compatibility gate; bumped only
+        on a breaking wire change. Additive getAppContext fields do not bump it.
+      sdk_version: semver, diagnostics only
+      mismatch_behaviour: warns and proceeds best-effort; no behaviour negotiation
+    docs: null
+    docs_note: >-
+      The npm README is the only public documentation. The design document it cites
+      (`venn-platform/docs/dr/20260818-venn-extension-app.md`) is internal.
+component_count: 1
+ui_component_library: false
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://registry.npmjs.org/@venncity%2Fextension-sdk
+      status: 200
+    - url: https://github.com/venn-city/venn-extension-sdk
+      status: 404
+      note: repository is private

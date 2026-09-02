@@ -1,0 +1,257 @@
+generated: '2026-09-02'
+method: probed
+source: >-
+  Named-path probe of every Venn host discovered in this pass (marketing site,
+  API gateway, release-notes site, operator dashboard, legal site) plus the AWS
+  Cognito user pool the dashboard bundle names as Venn's identity provider.
+note: >-
+  Venn serves NO /.well-known document from any host it controls. docs.venn.city,
+  dashboard.venn.city and legal.venn.city are single-page applications whose
+  catch-all answers HTTP 200 with the same HTML shell for every path, including a
+  negative-control path that cannot exist — so every 200 below on those hosts is a
+  soft hit, not a document. api.venn.city answers 403 uniformly (AWS API Gateway).
+  The only real document found is the OpenID Connect discovery document for Venn's
+  own AWS Cognito user pool (eu-central-1_cH7XNjcIx), which is served from an
+  amazonaws.com host rather than a venn.city host. NO WellKnown or SecurityTxt
+  pointer is emitted in apis.yml, because Venn does not serve this surface from its
+  own hosts and the pointer would assert that it does.
+hit_count: 0
+hosts:
+  - host: https://venn.city
+    path_echo_control: passed
+    soft_404_control:
+      path: /.well-known/venn-negative-control-889e486e.json
+      status: 404
+      bytes: 0
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/ucp.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://api.venn.city
+    note: >-
+      AWS API Gateway edge. Every path outside the deployed stage returns
+      403 ForbiddenException, including the negative control, so no /.well-known
+      surface is reachable here.
+    path_echo_control: passed
+    soft_404_control:
+      path: /.well-known/venn-negative-control-07b5d704.json
+      status: 403
+      bytes: 0
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+      - path: /.well-known/ucp.json
+        status: 403
+      - path: /.well-known/acp.json
+        status: 403
+      - path: /.well-known/aauth-resource.json
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+  - host: https://docs.venn.city
+    note: >-
+      SPA catch-all. Identical 3,395-byte HTML shell returned for every path,
+      including the negative control. Treated as a miss on every path.
+    catch_all: true
+    soft_404_control:
+      path: /.well-known/venn-negative-control-ef989e57.json
+      status: 200
+      bytes: 3395
+      body: html-shell
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/openid-configuration
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/api-catalog
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/ucp.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/acp.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/aauth-resource.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/agent-card.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/agent.json
+        status: 200
+        result: soft-hit-html-shell
+  - host: https://dashboard.venn.city
+    note: >-
+      Angular SPA catch-all. Identical 1,874-byte HTML shell for every path,
+      including the negative control. Treated as a miss on every path.
+    catch_all: true
+    soft_404_control:
+      path: /.well-known/venn-negative-control-044196d5.json
+      status: 200
+      bytes: 1874
+      body: html-shell
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/openid-configuration
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/api-catalog
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/ucp.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/acp.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/aauth-resource.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/agent-card.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/agent.json
+        status: 200
+        result: soft-hit-html-shell
+  - host: https://legal.venn.city
+    note: >-
+      SPA catch-all serving Venn's in-app legal documents. Identical 10,910-byte
+      HTML shell for every path, including the negative control.
+    catch_all: true
+    soft_404_control:
+      path: /.well-known/venn-negative-control-814dc3fd.json
+      status: 200
+      bytes: 10910
+      body: html-shell
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/openid-configuration
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/api-catalog
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/ucp.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/acp.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/aauth-resource.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/agent-card.json
+        status: 200
+        result: soft-hit-html-shell
+      - path: /.well-known/agent.json
+        status: 200
+        result: soft-hit-html-shell
+  - host: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx
+    note: >-
+      NOT a venn.city host. This is the AWS Cognito user pool that Venn's own
+      operator dashboard bundle (dashboard.venn.city) names as its identity
+      provider, so the document is Venn's identity configuration served on AWS
+      infrastructure. Recorded here as evidence for authentication/ and scopes/;
+      deliberately NOT counted as a Venn-served .well-known surface, and no
+      WellKnown pointer is emitted from it.
+    third_party_host: true
+    path_echo_control: passed
+    soft_404_control:
+      path: /.well-known/venn-negative-control-72571c09.json
+      status: 400
+      bytes: 0
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: venn-openid-configuration.json
+      - path: /.well-known/security.txt
+        status: 400
+      - path: /.well-known/oauth-authorization-server
+        status: 400
+      - path: /.well-known/oauth-protected-resource
+        status: 400
+      - path: /.well-known/api-catalog
+        status: 400
+      - path: /.well-known/ai-plugin.json
+        status: 400
+      - path: /.well-known/ucp.json
+        status: 400
+      - path: /.well-known/acp.json
+        status: 400
+      - path: /.well-known/aauth-resource.json
+        status: 400
+      - path: /.well-known/agent-card.json
+        status: 400
+      - path: /.well-known/agent.json
+        status: 400
+x-evidence:
+  checked: '2026-09-02'
+  hosts_probed: 6
+  paths_per_host: 11
+  negative_controls: 6
+  real_documents_on_provider_hosts: 0

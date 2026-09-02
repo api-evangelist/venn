@@ -1,0 +1,44 @@
+generated: '2026-09-02'
+method: probed
+source: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx/.well-known/openid-configuration
+note: >-
+  Venn publishes no scopes or permissions reference. The scopes below are the
+  standard OpenID Connect scopes advertised by the AWS Cognito user pool that
+  Venn's own operator dashboard names as its identity provider — they are identity
+  scopes, not API authorization scopes. Venn's tenant GraphQL API does not use
+  OAuth scopes to authorize data access; the schema models authorization as
+  role rows (`Role`) scoped to a community (`hood`), so there is nothing scope-like
+  in the contract to enumerate. Nothing here is invented: no custom resource
+  server scopes were advertised, and none are asserted.
+authorization_model: role-based (Role rows scoped to hood/community), not scope-based
+oauth:
+  issuer: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx
+  authorization_endpoint: https://admin-tool.auth.eu-central-1.amazoncognito.com/oauth2/authorize
+  token_endpoint: https://admin-tool.auth.eu-central-1.amazoncognito.com/oauth2/token
+  userinfo_endpoint: https://admin-tool.auth.eu-central-1.amazoncognito.com/oauth2/userInfo
+  revocation_endpoint: https://admin-tool.auth.eu-central-1.amazoncognito.com/oauth2/revoke
+scopes:
+  - name: openid
+    description: Standard OIDC scope. Requests an ID token identifying the end user.
+    source: cognito-openid-configuration
+  - name: email
+    description: Standard OIDC scope. Releases the email and email_verified claims.
+    source: cognito-openid-configuration
+  - name: phone
+    description: Standard OIDC scope. Releases the phone_number and phone_number_verified claims.
+    source: cognito-openid-configuration
+  - name: profile
+    description: Standard OIDC scope. Releases the basic profile claims.
+    source: cognito-openid-configuration
+custom_scopes: []
+custom_scopes_note: >-
+  No custom (resource-server) scopes are advertised by the pool's discovery
+  document. If Venn defines any, they are not publicly discoverable.
+scope_count: 4
+docs: null
+docs_note: No public scopes/permissions reference page exists on any Venn host.
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx/.well-known/openid-configuration
+      status: 200

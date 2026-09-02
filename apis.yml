@@ -1,23 +1,113 @@
 aid: venn
 name: Venn
-description: 'Venn is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Venn is a multifamily resident-experience operating system for owner-operators of
+  rental housing. Founded in 2016 and co-headquartered in New York and Tel Aviv, it
+  merges a resident-facing mobile app, an operator dashboard and a single data layer
+  over the resident lifecycle — leasing, onboarding, living, renewals, maintenance,
+  payments, community programming and an AI concierge — synced with the property
+  management system of record (Yardi, RealPage, Entrata, AppFolio). Venn runs an
+  unversioned Apollo Federation GraphQL API at api.venn.city with anonymous
+  introspection enabled, 320 query fields and 357 mutation fields across 468 object
+  types, authenticated with AWS Cognito bearer tokens. It publishes no developer
+  portal, API reference, OpenAPI or pricing; the contract is discoverable but the
+  data and the docs are not public.
+image: https://cdn.prod.website-files.com/6914773f376e5aaadf703caa/6914773f376e5aaadf703de2_logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/venn/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-02'
 modified: '2026-09-02'
 tags:
-- Company
-apis: []
+- Real Estate
+- Property Management
+- Multifamily
+- Resident Experience
+- Proptech
+- Leasing
+- Community
+- Payments
+- GraphQL
+- Mobile Apps
+apis:
+- name: Venn Tenant GraphQL API
+  description: >-
+    Venn's tenant-facing GraphQL API, served through an Apollo Federation gateway on
+    AWS API Gateway. Anonymous introspection returns the full contract — 1,983 types,
+    320 query fields, 357 mutation fields, no subscriptions — covering the property
+    graph (portfolio, community, building, unit, bedroom), residents and identity,
+    leasing and contracts, billing and payments, community engagement, broadcasts and
+    notifications, services and commerce, shared-space bookings, surveys and
+    configuration. Reads and writes require a Cognito bearer token; an unauthenticated
+    query returns VennUnknownError. Cursor pagination is mandatory on every list field.
+  humanURL: https://docs.venn.city/
+  baseURL: https://api.venn.city/production/graphql
+  tags:
+  - GraphQL
+  - Property Management
+  - Residents
+  - Leasing
+  - Payments
+  properties:
+  - type: GraphQL
+    url: graphql/venn-tenant.graphql
+  - type: Authentication
+    url: authentication/venn-authentication.yml
+  - type: OAuthScopes
+    url: scopes/venn-scopes.yml
+  - type: Conventions
+    url: conventions/venn-conventions.yml
+  - type: ErrorCatalog
+    url: errors/venn-error-codes.yml
+  - type: DataModel
+    url: data-model/venn-data-model.yml
+  - type: Conformance
+    url: conformance/venn-conformance.yml
+  - type: RateLimits
+    url: rate-limits/venn-rate-limits.yml
+  - type: Lifecycle
+    url: lifecycle/venn-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/venn-domain-security.yml
 - type: Website
+  url: https://venn.city/
+- type: TermsOfService
+  url: https://venn.city/terms
+- type: PrivacyPolicy
+  url: https://venn.city/privacy
+- type: Login
+  url: https://dashboard.venn.city/
+- type: ChangeLog
+  url: changelog/venn-changelog.yml
+- type: ReleaseNotes
+  url: https://docs.venn.city/
+- type: GitHubOrganization
+  url: https://github.com/venn-city
+- type: Packages
+  url: packages/venn-packages.yml
+- type: SDKs
+  url: packages/venn-packages.yml
+- type: Components
+  url: components/venn-components.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/venn-llms.txt
+- type: Plans
+  url: plans/venn-plans-pricing.yml
+- type: DataModel
+  url: data-model/venn-data-model.yml
+- type: Listing
   url: https://forgeglobal.com/venn_stock/
+x-enrichment:
+  date: '2026-09-02'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

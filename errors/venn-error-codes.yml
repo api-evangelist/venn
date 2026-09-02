@@ -1,0 +1,76 @@
+generated: '2026-09-02'
+method: probed
+source: https://api.venn.city/production/graphql
+note: >-
+  Venn publishes no error reference. Every code below was observed on the wire from
+  unauthenticated calls to the production gateway on 2026-09-02, or read from the
+  published schema. This is not a complete registry — it is the set that can be
+  elicited without credentials. Codes are carried in `errors[].extensions.code`;
+  Venn's own `@venncity/errors` npm package is the library behind them.
+format: graphql-errors
+rfc9457: false
+envelope:
+  location: errors[]
+  code_field: extensions.code
+  service_field: extensions.serviceName
+  trace_field: extensions.traceId
+  level_field: extensions.logLevel
+  http_status: 200
+  data_on_error: 'null (or partial, per GraphQL spec)'
+problems:
+  - code: pagination_enforce_error
+    title: Unpaginated list query rejected
+    status: 200
+    service: persistency
+    log_level: warn
+    message: >-
+      Cant fetch all data - must send query with first or last arguments
+    remediation: >-
+      Supply `first` or `last` on every list field. Cursor with `after`/`before`
+      and the `pageInfo` returned on the connection.
+    observed: true
+    observed_query: '{ buildings { id } }'
+  - code: VennUnknownError
+    title: Unknown / unauthorized
+    status: 200
+    service: persistency
+    log_level: error
+    message: VennUnknownError
+    remediation: >-
+      Present a valid Cognito bearer token for a tenant that can see the requested
+      entity. This is what the gateway returns for an unauthenticated data read —
+      it does not distinguish authentication failure from an internal fault, which
+      is worth noting for any agent trying to decide whether to retry.
+    observed: true
+    observed_query: '{ users(first:1) { id } }'
+  - code: GRAPHQL_VALIDATION_FAILED
+    title: Query does not validate against the schema
+    status: 200
+    service: gateway
+    message: 'Cannot query field "<field>" on type "<Type>".'
+    remediation: Validate the document against graphql/venn-tenant.graphql before sending.
+    observed: true
+    observed_query: '{ nosuchfield }'
+transport_errors:
+  - status: 403
+    body: '{"message":"Forbidden"}'
+    source: AWS API Gateway (x-amzn-errortype ForbiddenException)
+    meaning: >-
+      Any path outside the `/production/` stage on api.venn.city, including the
+      host root and every `/.well-known/` path.
+    observed: true
+disclosure_gap:
+  finding: >-
+    Error responses include `extensions.exception.stacktrace` — a full server-side
+    stack trace naming internal webpack module paths and `@apollo/gateway`
+    internals — and it is returned to unauthenticated callers. Venn should
+    disable stack traces in the production gateway.
+  observed: true
+  severity: informational
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://api.venn.city/production/graphql
+      status: 200
+    - url: https://api.venn.city/
+      status: 403

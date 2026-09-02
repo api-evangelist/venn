@@ -1,0 +1,2384 @@
+generated: '2026-09-02'
+method: derived
+source: graphql/venn-tenant.graphql
+note: 'Entity-relationship graph derived from the live Venn tenant GraphQL schema (introspected anonymously
+  from https://api.venn.city/production/graphql on 2026-09-02). Relationships are read from object-typed
+  fields on each type: a list-typed field is has_many, a singular object-typed field is has_one. Connection,
+  Edge, aggregate and filter/order-by types are excluded. Venn publishes no object reference, so nothing
+  here is enriched from documentation and no id-prefix scheme is asserted.'
+contract:
+  style: GraphQL
+  endpoint: https://api.venn.city/production/graphql
+  types_total: 1983
+  objects: 181
+  input_objects: 1262
+  enums: 241
+  unions:
+  - AudienceParams
+  - RealEstateUnion
+  - MyOrdersResult
+  custom_scalars:
+  - DateTime
+  - Json
+  - Long
+  query_fields: 320
+  mutation_fields: 357
+  subscriptions: false
+identity_convention:
+  primary_key: id (ID)
+  timestamps:
+  - createdAt
+  - updatedAt
+  soft_delete:
+  - deleted
+  - deletedAt
+  note: Uniform across every entity in the schema.
+domains:
+  property-graph:
+  - Portfolio
+  - Hood
+  - Building
+  - Unit
+  - Bedroom
+  - Address
+  - PropertyManagementOffice
+  - SharedSpace
+  - Place
+  residents-and-identity:
+  - User
+  - Member
+  - MemberProfile
+  - Role
+  - Pet
+  - UserApiKey
+  - UserPaymentMethod
+  - UserPushNotificationToken
+  leasing:
+  - Application
+  - RealEstateListing
+  - RealEstateAmenity
+  - LeaseContract
+  - MembershipContract
+  - SubscriptionContract
+  - BuildingContract
+  - UnitStatusLog
+  billing-and-payments:
+  - Bill
+  - BillableItem
+  - Invoice
+  - Transaction
+  - PaymentTransaction
+  - PaymentRequest
+  - PaymentProvider
+  - PaymentSetting
+  - PayoutPlan
+  - TaxRate
+  - Currency
+  - ExternalBill
+  - ExternalReceipt
+  community-and-engagement:
+  - Event
+  - EventAttendee
+  - InterestGroup
+  - SocialMoment
+  - SocialReaction
+  - SocialInteraction
+  - SocialTag
+  - Comment
+  - CommunityTitle
+  - FeaturedSlide
+  - TreasureItem
+  messaging:
+  - Broadcast
+  - ScheduledBroadcast
+  - BroadcastAttachment
+  - Notification
+  - NotificationCategory
+  - NotificationSetting
+  - FeatureAnnouncement
+  services-and-commerce:
+  - Service
+  - ServiceCategory
+  - ServiceProduct
+  - ServiceProductOrder
+  - Product
+  - ProductCategory
+  - ProductType
+  - SubProduct
+  bookings:
+  - Calendar
+  - CalendarBooking
+  surveys-and-feedback:
+  - Survey
+  - SurveyQuestion
+  - SurveyQuestionResponse
+  - SurveyResult
+  - SurveyUserAction
+  configuration-and-ops:
+  - Feature
+  - HoodSetting
+  - HoodSettingValue
+  - HoodSettingsGroup
+  - BuildingSetting
+  - MobileAppPage
+  - Workflow
+  - Audit
+  - FeedClassification
+core_entities:
+- &id001
+  name: MemberProfile
+  fields: 30
+  scalar_fields: 11
+  relationships: 19
+  operations:
+  - Query.memberProfile
+  - Query.memberProfiles
+  - Mutation.createMemberProfile
+  - Mutation.updateMemberProfile
+  - Mutation.deleteMemberProfile
+  relations:
+  - kind: has_one
+    target: MemberProfileAddressField
+    via: address
+  - kind: has_one
+    target: MemberProfileStringField
+    via: biography
+  - kind: has_one
+    target: Byline
+    via: byline
+  - kind: has_one
+    target: MemberProfileCallToActionField
+    via: callToAction
+  - kind: has_many
+    target: CommunityTitle
+    via: communityTitles
+  - kind: has_one
+    target: MemberProfileDateField
+    via: dateOfBirth
+  - kind: has_one
+    target: MemberProfileStringField
+    via: firstName
+  - kind: has_one
+    target: MemberProfileStringField
+    via: image
+  - kind: has_many
+    target: InterestGroup
+    via: interestGroups
+  - kind: has_one
+    target: MemberProfileStringField
+    via: lastName
+  - kind: has_one
+    target: MemberProfileDateField
+    via: memberSince
+  - kind: has_one
+    target: MemberProfileStringField
+    via: occupation
+  - kind: has_one
+    target: MemberProfilePetsField
+    via: pets
+  - kind: has_one
+    target: MemberProfilePronounsField
+    via: pronouns
+  - kind: has_one
+    target: MemberProfileStringField
+    via: quote
+  - kind: has_one
+    target: MemberProfileSocialLinksField
+    via: socialLinks
+  - kind: has_one
+    target: MemberProfileSocialTagsField
+    via: socialTags
+  - kind: has_one
+    target: MemberProfileStringField
+    via: superpowers
+  - kind: has_one
+    target: MemberProfileStringField
+    via: website
+- &id002
+  name: Bill
+  fields: 31
+  scalar_fields: 21
+  relationships: 10
+  operations:
+  - Query.bill
+  - Query.bills
+  - Mutation.createBill
+  - Mutation.updateBill
+  - Mutation.deleteBill
+  relations:
+  - kind: has_one
+    target: ExternalBill
+    via: externalBill
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: User
+    via: payerUser
+  - kind: has_many
+    target: PaymentRequestEmail
+    via: paymentRequestEmails
+  - kind: has_many
+    target: PaymentRequestEmail
+    via: paymentRequestEmails_debug
+  - kind: has_many
+    target: PaymentTransaction
+    via: paymentTransactions
+  - kind: has_many
+    target: User
+    via: relatedUsers
+  - kind: has_many
+    target: Transaction
+    via: transactions
+  - kind: has_many
+    target: Unit
+    via: units
+  - kind: has_one
+    target: User
+    via: user
+- &id003
+  name: User
+  fields: 40
+  scalar_fields: 30
+  relationships: 10
+  operations:
+  - Query.user
+  - Query.users
+  - Mutation.createUser
+  - Mutation.updateUser
+  - Mutation.deleteUser
+  relations:
+  - kind: has_many
+    target: Bill
+    via: bills
+  - kind: has_one
+    target: Bedroom
+    via: computedBedroom
+  - kind: has_one
+    target: Building
+    via: computedBuilding
+  - kind: has_one
+    target: Unit
+    via: computedUnit
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: Member
+    via: member
+  - kind: has_one
+    target: MemberProfile
+    via: memberProfile
+  - kind: has_many
+    target: UserPaymentMethod
+    via: paymentMethods
+  - kind: has_many
+    target: Role
+    via: roles
+  - kind: has_one
+    target: UserUiMetadata
+    via: uiMetadata
+- &id004
+  name: Broadcast
+  fields: 25
+  scalar_fields: 17
+  relationships: 8
+  operations:
+  - Query.broadcast
+  - Query.broadcasts
+  - Mutation.createBroadcast
+  - Mutation.updateBroadcast
+  - Mutation.deleteBroadcast
+  relations:
+  - kind: has_many
+    target: Audience
+    via: audiences
+  - kind: has_many
+    target: BroadcastAttachment
+    via: broadcastAttachments
+  - kind: has_one
+    target: Content
+    via: content
+  - kind: has_one
+    target: User
+    via: createdByUser
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: Notification
+    via: notifications
+  - kind: has_one
+    target: ScheduledBroadcast
+    via: scheduledBroadcast
+  - kind: has_many
+    target: BroadcastStatParam
+    via: stats
+- &id005
+  name: Building
+  fields: 34
+  scalar_fields: 26
+  relationships: 8
+  operations:
+  - Query.building
+  - Query.buildings
+  - Mutation.createBuilding
+  - Mutation.updateBuilding
+  - Mutation.deleteBuilding
+  relations:
+  - kind: has_one
+    target: Address
+    via: address
+  - kind: has_one
+    target: BuildingContract
+    via: buildingContract
+  - kind: has_one
+    target: BuildingSetting
+    via: buildingSetting
+  - kind: has_many
+    target: FeaturedSlide
+    via: featuredSlides
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: PropertyManagementOffice
+    via: propertyManagementOffice
+  - kind: has_many
+    target: Unit
+    via: units
+  - kind: has_many
+    target: User
+    via: users
+- &id006
+  name: SocialMoment
+  fields: 28
+  scalar_fields: 21
+  relationships: 7
+  operations:
+  - Query.socialMoment
+  - Query.socialMoments
+  - Mutation.createSocialMoment
+  - Mutation.updateSocialMoment
+  - Mutation.deleteSocialMoment
+  relations:
+  - kind: has_many
+    target: Building
+    via: buildings
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: InteractingMemberProfile
+    via: interactingMembers
+  - kind: has_one
+    target: User
+    via: owner
+  - kind: has_one
+    target: SocialMomentSentiment
+    via: sentiment
+  - kind: has_one
+    target: SocialReactionsAggregate
+    via: socialReactionsAggregate
+  - kind: has_one
+    target: Survey
+    via: survey
+- &id007
+  name: Transaction
+  fields: 24
+  scalar_fields: 17
+  relationships: 7
+  operations:
+  - Query.transaction
+  - Query.transactions
+  - Mutation.createTransaction
+  - Mutation.updateTransaction
+  - Mutation.deleteTransaction
+  relations:
+  - kind: has_one
+    target: Bill
+    via: bill
+  - kind: has_one
+    target: BillableItem
+    via: billableItem
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: Transaction
+    via: inverseTransaction
+  - kind: has_one
+    target: Unit
+    via: sapUnit
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_one
+    target: Transaction
+    via: voidedTransaction
+- &id008
+  name: Unit
+  fields: 31
+  scalar_fields: 24
+  relationships: 7
+  operations:
+  - Query.unit
+  - Query.units
+  - Mutation.createUnit
+  - Mutation.updateUnit
+  - Mutation.deleteUnit
+  relations:
+  - kind: has_many
+    target: Bedroom
+    via: bedrooms
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: LeaseContract
+    via: leaseContracts
+  - kind: has_one
+    target: Product
+    via: product
+  - kind: has_one
+    target: RealEstateListing
+    via: realEstateListing
+  - kind: has_many
+    target: UnitStatusLog
+    via: unitStatusLogs
+- &id009
+  name: Event
+  fields: 32
+  scalar_fields: 26
+  relationships: 6
+  operations:
+  - Query.event
+  - Query.events
+  - Mutation.createEvent
+  - Mutation.updateEvent
+  - Mutation.deleteEvent
+  relations:
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_many
+    target: Building
+    via: buildings
+  - kind: has_many
+    target: EventAttendee
+    via: eventAttendees
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: Place
+    via: place
+  - kind: has_one
+    target: Survey
+    via: survey
+- &id010
+  name: LeaseContract
+  fields: 44
+  scalar_fields: 38
+  relationships: 6
+  operations:
+  - Query.leaseContract
+  - Query.leaseContracts
+  - Mutation.createLeaseContract
+  - Mutation.updateLeaseContract
+  - Mutation.deleteLeaseContract
+  relations:
+  - kind: has_one
+    target: Bedroom
+    via: bedroom
+  - kind: has_many
+    target: BillableItem
+    via: billableItems
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: Member
+    via: member
+  - kind: has_one
+    target: Unit
+    via: unit
+  - kind: has_one
+    target: User
+    via: user
+- &id011
+  name: Member
+  fields: 14
+  scalar_fields: 8
+  relationships: 6
+  operations:
+  - Query.member
+  - Query.members
+  - Mutation.createMember
+  - Mutation.updateMember
+  - Mutation.deleteMember
+  relations:
+  - kind: has_many
+    target: MemberAddress
+    via: addresses
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: Hood
+    via: hoods
+  - kind: has_many
+    target: LeaseContract
+    via: leaseContracts
+  - kind: has_many
+    target: MembershipContract
+    via: membershipContracts
+  - kind: has_one
+    target: User
+    via: user
+- &id012
+  name: PaymentTransaction
+  fields: 23
+  scalar_fields: 17
+  relationships: 6
+  operations:
+  - Query.paymentTransaction
+  - Query.paymentTransactions
+  - Mutation.createPaymentTransaction
+  - Mutation.updatePaymentTransaction
+  - Mutation.deletePaymentTransaction
+  relations:
+  - kind: has_one
+    target: Bill
+    via: bill
+  - kind: has_one
+    target: Currency
+    via: currency
+  - kind: has_one
+    target: PaymentProvider
+    via: paymentProvider
+  - kind: has_one
+    target: PaymentReceiptEmail
+    via: paymentReceiptEmail
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_one
+    target: UserPaymentMethod
+    via: userPaymentMethod
+- &id013
+  name: RealEstateListing
+  fields: 26
+  scalar_fields: 20
+  relationships: 6
+  operations:
+  - Query.realEstateListing
+  - Query.realEstateListings
+  - Mutation.createRealEstateListing
+  - Mutation.updateRealEstateListing
+  - Mutation.deleteRealEstateListing
+  relations:
+  - kind: has_one
+    target: Address
+    via: address
+  - kind: has_many
+    target: RealEstateAmenity
+    via: amenites
+  - kind: has_one
+    target: Bedroom
+    via: bedroom
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: SubwayStation
+    via: nearBySubways
+  - kind: has_one
+    target: Unit
+    via: unit
+- &id014
+  name: Application
+  fields: 22
+  scalar_fields: 17
+  relationships: 5
+  operations:
+  - Query.application
+  - Query.applications
+  - Mutation.createApplication
+  - Mutation.updateApplication
+  - Mutation.deleteApplication
+  relations:
+  - kind: has_one
+    target: User
+    via: assignedEmployeeUser
+  - kind: has_one
+    target: PaymentRequest
+    via: holdDepositPaymentRequest
+  - kind: has_one
+    target: LeaseContract
+    via: leaseContract
+  - kind: has_one
+    target: MembershipContract
+    via: membershipContract
+  - kind: has_one
+    target: User
+    via: user
+- &id015
+  name: MembershipContract
+  fields: 22
+  scalar_fields: 17
+  relationships: 5
+  operations:
+  - Query.membershipContract
+  - Query.membershipContracts
+  - Mutation.createMembershipContract
+  - Mutation.updateMembershipContract
+  - Mutation.deleteMembershipContract
+  relations:
+  - kind: has_many
+    target: BillableItem
+    via: billableItems
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: Member
+    via: member
+  - kind: has_one
+    target: Product
+    via: product
+  - kind: has_one
+    target: User
+    via: user
+- &id016
+  name: Place
+  fields: 21
+  scalar_fields: 16
+  relationships: 5
+  operations:
+  - Query.place
+  - Query.places
+  - Mutation.createPlace
+  - Mutation.updatePlace
+  - Mutation.deletePlace
+  relations:
+  - kind: has_one
+    target: Address
+    via: address
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: SharedSpace
+    via: sharedSpace
+  - kind: has_many
+    target: TransitStop
+    via: transitStops
+- &id017
+  name: Bedroom
+  fields: 13
+  scalar_fields: 9
+  relationships: 4
+  operations:
+  - Query.bedroom
+  - Query.bedrooms
+  - Mutation.createBedroom
+  - Mutation.updateBedroom
+  - Mutation.deleteBedroom
+  relations:
+  - kind: has_many
+    target: LeaseContract
+    via: leaseContracts
+  - kind: has_one
+    target: Product
+    via: product
+  - kind: has_one
+    target: RealEstateListing
+    via: realEstateListing
+  - kind: has_one
+    target: Unit
+    via: unit
+- &id018
+  name: Service
+  fields: 23
+  scalar_fields: 19
+  relationships: 4
+  operations:
+  - Query.service
+  - Query.services
+  - Mutation.createService
+  - Mutation.updateService
+  - Mutation.deleteService
+  relations:
+  - kind: has_one
+    target: ServiceCategory
+    via: category
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: Place
+    via: location
+  - kind: has_many
+    target: ServiceProduct
+    via: products
+- &id019
+  name: ServiceProductOrder
+  fields: 16
+  scalar_fields: 12
+  relationships: 4
+  operations:
+  - Query.serviceProductOrder
+  - Query.serviceProductOrders
+  - Mutation.createServiceProductOrder
+  - Mutation.updateServiceProductOrder
+  - Mutation.deleteServiceProductOrder
+  relations:
+  - kind: has_one
+    target: BillableItem
+    via: billableItem
+  - kind: has_one
+    target: CalendarBooking
+    via: calendarBooking
+  - kind: has_one
+    target: ServiceProduct
+    via: serviceProduct
+  - kind: has_one
+    target: User
+    via: user
+- &id020
+  name: Survey
+  fields: 20
+  scalar_fields: 16
+  relationships: 4
+  operations:
+  - Query.survey
+  - Query.surveys
+  - Mutation.createSurvey
+  - Mutation.updateSurvey
+  - Mutation.deleteSurvey
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: SurveyQuestion
+    via: questions
+  - kind: has_one
+    target: UserSurveyStatus
+    via: status
+  - kind: has_many
+    target: SurveyUserAction
+    via: surveyUserActions
+- &id021
+  name: Hood
+  fields: 17
+  scalar_fields: 14
+  relationships: 3
+  operations:
+  - Query.hood
+  - Query.hoods
+  - Mutation.createHood
+  - Mutation.updateHood
+  - Mutation.deleteHood
+  relations:
+  - kind: has_many
+    target: User
+    via: communityManagers
+  - kind: has_one
+    target: PropertyManagementOffice
+    via: propertyManagementOffice
+  - kind: has_one
+    target: Settings
+    via: settings
+- &id022
+  name: Notification
+  fields: 25
+  scalar_fields: 22
+  relationships: 3
+  operations:
+  - Query.notification
+  - Query.notifications
+  - Mutation.createNotification
+  - Mutation.updateNotification
+  - Mutation.deleteNotification
+  relations:
+  - kind: has_one
+    target: Broadcast
+    via: broadcast
+  - kind: has_one
+    target: NotificationCategory
+    via: notificationCategory
+  - kind: has_one
+    target: User
+    via: toUser
+- &id023
+  name: PaymentRequest
+  fields: 18
+  scalar_fields: 15
+  relationships: 3
+  operations:
+  - Query.paymentRequest
+  - Query.paymentRequests
+  - Mutation.createPaymentRequest
+  - Mutation.updatePaymentRequest
+  - Mutation.deletePaymentRequest
+  relations:
+  - kind: has_one
+    target: Currency
+    via: currency
+  - kind: has_one
+    target: PaymentProvider
+    via: paymentProvider
+  - kind: has_one
+    target: User
+    via: user
+- &id024
+  name: Product
+  fields: 14
+  scalar_fields: 11
+  relationships: 3
+  operations:
+  - Query.product
+  - Query.products
+  - Mutation.createProduct
+  - Mutation.updateProduct
+  - Mutation.deleteProduct
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: ProductCategory
+    via: productCategory
+  - kind: has_many
+    target: SubProduct
+    via: subProducts
+- &id025
+  name: SharedSpace
+  fields: 14
+  scalar_fields: 11
+  relationships: 3
+  operations:
+  - Query.sharedSpace
+  - Query.sharedSpaces
+  - Mutation.createSharedSpace
+  - Mutation.updateSharedSpace
+  - Mutation.deleteSharedSpace
+  relations:
+  - kind: has_one
+    target: Address
+    via: address
+  - kind: has_one
+    target: Calendar
+    via: calendar
+  - kind: has_one
+    target: Hood
+    via: hood
+- &id026
+  name: CalendarBooking
+  fields: 11
+  scalar_fields: 9
+  relationships: 2
+  operations:
+  - Query.calendarBooking
+  - Query.calendarBookings
+  - Mutation.createCalendarBooking
+  - Mutation.updateCalendarBooking
+  - Mutation.deleteCalendarBooking
+  relations:
+  - kind: has_one
+    target: Calendar
+    via: calendar
+  - kind: has_one
+    target: User
+    via: owner
+- &id027
+  name: Invoice
+  fields: 14
+  scalar_fields: 12
+  relationships: 2
+  operations:
+  - Query.invoice
+  - Query.invoices
+  - Mutation.createInvoice
+  - Mutation.updateInvoice
+  - Mutation.deleteInvoice
+  relations:
+  - kind: has_many
+    target: PaymentTransaction
+    via: paymentTransactions
+  - kind: has_one
+    target: User
+    via: user
+- &id028
+  name: Role
+  fields: 9
+  scalar_fields: 7
+  relationships: 2
+  operations:
+  - Query.role
+  - Query.roles
+  - Mutation.createRole
+  - Mutation.updateRole
+  - Mutation.deleteRole
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: User
+    via: users
+- &id029
+  name: Audit
+  fields: 24
+  scalar_fields: 23
+  relationships: 1
+  operations:
+  - Query.audit
+  - Query.audits
+  - Mutation.createAudit
+  relations:
+  - kind: has_one
+    target: User
+    via: user
+- &id030
+  name: Pet
+  fields: 13
+  scalar_fields: 12
+  relationships: 1
+  operations:
+  - Query.pet
+  - Query.pets
+  - Mutation.createPet
+  - Mutation.updatePet
+  - Mutation.deletePet
+  relations:
+  - kind: has_one
+    target: MemberProfilePetsField
+    via: memberProfilePetsField
+- &id031
+  name: Portfolio
+  fields: 8
+  scalar_fields: 7
+  relationships: 1
+  operations:
+  - Query.portfolio
+  - Query.portfolios
+  - Mutation.createPortfolio
+  - Mutation.updatePortfolio
+  - Mutation.deletePortfolio
+  relations:
+  - kind: has_many
+    target: Hood
+    via: hoods
+- &id032
+  name: Workflow
+  fields: 13
+  scalar_fields: 13
+  relationships: 0
+  operations:
+  - Query.workflow
+  - Query.workflows
+  - Mutation.createWorkflow
+  - Mutation.updateWorkflow
+  - Mutation.deleteWorkflow
+entities:
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- name: PaymentSettings
+  fields: 8
+  scalar_fields: 1
+  relationships: 7
+  operations:
+  - Query.paymentSettings
+  - Query.paymentSettings
+  relations:
+  - kind: has_one
+    target: AutoBillingSettings
+    via: autoBilling
+  - kind: has_one
+    target: BillingNotificationsSettings
+    via: billingNotifications
+  - kind: has_one
+    target: Currency
+    via: currency
+  - kind: has_many
+    target: paymentProviderFeesSetting
+    via: paymentProviderFees
+  - kind: has_many
+    target: PaymentProvider
+    via: paymentProviders
+  - kind: has_one
+    target: paymentReceiptSettings
+    via: paymentReceipt
+  - kind: has_one
+    target: rentLateFeesSettings
+    via: rentLateFees
+- *id006
+- *id007
+- *id008
+- name: BillableItem
+  fields: 23
+  scalar_fields: 17
+  relationships: 6
+  operations:
+  - Query.billableItem
+  - Query.billableItems
+  - Mutation.createBillableItem
+  - Mutation.updateBillableItem
+  - Mutation.deleteBillableItem
+  relations:
+  - kind: has_one
+    target: LeaseContract
+    via: leaseContract
+  - kind: has_one
+    target: MembershipContract
+    via: membershipContract
+  - kind: has_one
+    target: SubProduct
+    via: subProduct
+  - kind: has_many
+    target: Transaction
+    via: transactions
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_one
+    target: User
+    via: vennEmployee
+- *id009
+- *id010
+- *id011
+- *id012
+- *id013
+- name: ServiceProduct
+  fields: 33
+  scalar_fields: 27
+  relationships: 6
+  operations:
+  - Query.serviceProduct
+  - Query.serviceProducts
+  - Mutation.createServiceProduct
+  - Mutation.updateServiceProduct
+  - Mutation.deleteServiceProduct
+  relations:
+  - kind: has_one
+    target: Calendar
+    via: calendar
+  - kind: has_one
+    target: SubscriptionContract
+    via: currentUserSubscriptionContract
+  - kind: has_one
+    target: Place
+    via: pickupLocation
+  - kind: has_one
+    target: Service
+    via: service
+  - kind: has_one
+    target: SubProduct
+    via: subProduct
+  - kind: has_one
+    target: TaxRate
+    via: taxRate
+- *id014
+- name: ContractSettings
+  fields: 6
+  scalar_fields: 1
+  relationships: 5
+  relations:
+  - kind: has_one
+    target: BackgroundCheckSettings
+    via: backgroundCheck
+  - kind: has_one
+    target: EventsSettings
+    via: events
+  - kind: has_one
+    target: HoldDepositSettings
+    via: holdDeposit
+  - kind: has_one
+    target: NotificationSettings
+    via: notifications
+  - kind: has_one
+    target: SecurityDepositSettings
+    via: securityDeposit
+- *id015
+- *id016
+- *id017
+- name: EventsSettings
+  fields: 4
+  scalar_fields: 0
+  relationships: 4
+  relations:
+  - kind: has_one
+    target: ContractEventConfiguration
+    via: contractEndedXDaysAgo
+  - kind: has_one
+    target: ContractEventConfiguration
+    via: contractStartedXDaysAgo
+  - kind: has_one
+    target: ContractEventConfiguration
+    via: contractWillEndInXDays
+  - kind: has_one
+    target: ContractEventConfiguration
+    via: contractWillStartInXDays
+- name: MemberProfileAddressField
+  fields: 12
+  scalar_fields: 8
+  relationships: 4
+  operations:
+  - Query.memberProfileAddressField
+  - Query.memberProfileAddressFields
+  - Mutation.createMemberProfileAddressField
+  - Mutation.updateMemberProfileAddressField
+  - Mutation.deleteMemberProfileAddressField
+  relations:
+  - kind: has_one
+    target: Address
+    via: address
+  - kind: has_one
+    target: Bedroom
+    via: bedroom
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_one
+    target: Unit
+    via: unit
+- name: MemberProfileSocialLinksField
+  fields: 11
+  scalar_fields: 7
+  relationships: 4
+  operations:
+  - Query.memberProfileSocialLinksField
+  - Query.memberProfileSocialLinksFields
+  - Mutation.createMemberProfileSocialLinksField
+  - Mutation.updateMemberProfileSocialLinksField
+  - Mutation.deleteMemberProfileSocialLinksField
+  relations:
+  - kind: has_one
+    target: MemberProfileStringField
+    via: facebook
+  - kind: has_one
+    target: MemberProfileStringField
+    via: instagram
+  - kind: has_one
+    target: MemberProfileStringField
+    via: linkedin
+  - kind: has_one
+    target: MemberProfileStringField
+    via: youtube
+- name: NotificationSettings
+  fields: 4
+  scalar_fields: 0
+  relationships: 4
+  operations:
+  - Query.notificationSettings
+  - Query.notificationSettings
+  relations:
+  - kind: has_one
+    target: VennerNotificationConfiguration
+    via: notifyVennerOnContractAboutToEnd
+  - kind: has_one
+    target: VennerNotificationConfiguration
+    via: notifyVennerOnContractAboutToStart
+  - kind: has_one
+    target: VennerNotificationConfiguration
+    via: notifyVennerOnContractEnded
+  - kind: has_one
+    target: VennerNotificationConfiguration
+    via: notifyVennerOnContractStarted
+- *id018
+- *id019
+- name: Settings
+  fields: 5
+  scalar_fields: 1
+  relationships: 4
+  relations:
+  - kind: has_one
+    target: ContractSettings
+    via: contractSettings
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: NotificationSetting
+    via: notificationSettings
+  - kind: has_one
+    target: PaymentSettings
+    via: paymentSettings
+- name: SpaceTypeContractAttributes
+  fields: 4
+  scalar_fields: 0
+  relationships: 4
+  relations:
+  - kind: has_one
+    target: SpaceTypeContractAttribute
+    via: commercial
+  - kind: has_one
+    target: SpaceTypeContractAttribute
+    via: legacy
+  - kind: has_one
+    target: SpaceTypeContractAttribute
+    via: managed
+  - kind: has_one
+    target: SpaceTypeContractAttribute
+    via: rentStabilized
+- *id020
+- name: BillingNotificationsSettings
+  fields: 3
+  scalar_fields: 0
+  relationships: 3
+  relations:
+  - kind: has_one
+    target: EmailNotificationSettings
+    via: emailNotifications
+  - kind: has_one
+    target: PushNotificationSettings
+    via: pushNotifications
+  - kind: has_one
+    target: SMSNotificationSettings
+    via: SMSNotifications
+- name: BuildingContract
+  fields: 13
+  scalar_fields: 10
+  relationships: 3
+  operations:
+  - Query.buildingContract
+  - Query.buildingContracts
+  - Mutation.createBuildingContract
+  - Mutation.updateBuildingContract
+  - Mutation.deleteBuildingContract
+  relations:
+  - kind: has_one
+    target: BaseRentOverTimeTable
+    via: baseRentOverTimeTable
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_one
+    target: SpaceTypeContractAttributes
+    via: spaceTypeContractAttributes
+- name: EventAttendee
+  fields: 12
+  scalar_fields: 9
+  relationships: 3
+  operations:
+  - Query.eventAttendee
+  - Query.eventAttendees
+  - Mutation.createEventAttendee
+  - Mutation.updateEventAttendee
+  - Mutation.deleteEventAttendee
+  relations:
+  - kind: has_many
+    target: BillableItem
+    via: billableItems
+  - kind: has_one
+    target: Event
+    via: event
+  - kind: has_one
+    target: User
+    via: user
+- *id021
+- name: HoodSettingsGroup
+  fields: 12
+  scalar_fields: 9
+  relationships: 3
+  operations:
+  - Query.hoodSettingsGroup
+  - Query.hoodSettingsGroups
+  - Mutation.createHoodSettingsGroup
+  - Mutation.updateHoodSettingsGroup
+  - Mutation.deleteHoodSettingsGroup
+  relations:
+  - kind: has_many
+    target: HoodSettingsGroup
+    via: children
+  - kind: has_one
+    target: HoodSettingsGroup
+    via: parent
+  - kind: has_many
+    target: HoodSetting
+    via: settings
+- *id022
+- name: PaymentReceiptEmail
+  fields: 11
+  scalar_fields: 8
+  relationships: 3
+  operations:
+  - Query.paymentReceiptEmail
+  - Query.paymentReceiptEmails
+  - Mutation.createPaymentReceiptEmail
+  - Mutation.updatePaymentReceiptEmail
+  - Mutation.deletePaymentReceiptEmail
+  relations:
+  - kind: has_one
+    target: Bill
+    via: bill
+  - kind: has_one
+    target: Member
+    via: member
+  - kind: has_one
+    target: PaymentTransaction
+    via: paymentTransaction
+- *id023
+- name: PayoutPlan
+  fields: 11
+  scalar_fields: 8
+  relationships: 3
+  operations:
+  - Query.payoutPlan
+  - Query.payoutPlans
+  - Mutation.createPayoutPlan
+  - Mutation.updatePayoutPlan
+  - Mutation.deletePayoutPlan
+  relations:
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: ProductCategory
+    via: productCategory
+- *id024
+- name: RealEstateAmenity
+  fields: 12
+  scalar_fields: 9
+  relationships: 3
+  operations:
+  - Query.realEstateAmenity
+  - Query.realEstateAmenities
+  - Mutation.createRealEstateAmenity
+  - Mutation.updateRealEstateAmenity
+  - Mutation.deleteRealEstateAmenity
+  relations:
+  - kind: has_one
+    target: Building
+    via: building
+  - kind: has_one
+    target: RealEstateAmenityCategory
+    via: category
+  - kind: has_one
+    target: Unit
+    via: unit
+- *id025
+- name: SubscriptionContract
+  fields: 18
+  scalar_fields: 15
+  relationships: 3
+  operations:
+  - Query.subscriptionContract
+  - Query.subscriptionContracts
+  - Mutation.createSubscriptionContract
+  - Mutation.updateSubscriptionContract
+  - Mutation.deleteSubscriptionContract
+  relations:
+  - kind: has_many
+    target: BillableItem
+    via: billableItems
+  - kind: has_one
+    target: ServiceProduct
+    via: serviceProduct
+  - kind: has_one
+    target: User
+    via: user
+- name: SurveyQuestion
+  fields: 15
+  scalar_fields: 12
+  relationships: 3
+  operations:
+  - Query.surveyQuestion
+  - Query.surveyQuestions
+  - Mutation.createSurveyQuestion
+  - Mutation.updateSurveyQuestion
+  - Mutation.deleteSurveyQuestion
+  relations:
+  - kind: has_many
+    target: SurveyQuestionResponse
+    via: responses
+  - kind: has_one
+    target: Survey
+    via: survey
+  - kind: has_many
+    target: SurveyQuestionVote
+    via: votes
+- *id026
+- name: Comment
+  fields: 13
+  scalar_fields: 11
+  relationships: 2
+  operations:
+  - Query.comment
+  - Query.comments
+  - Mutation.createComment
+  - Mutation.updateComment
+  - Mutation.deleteComment
+  relations:
+  - kind: has_one
+    target: MemberProfile
+    via: author
+  - kind: has_one
+    target: SocialReactionsAggregate
+    via: socialReactionsAggregate
+- name: ExternalBillReceipt
+  fields: 8
+  scalar_fields: 6
+  relationships: 2
+  operations:
+  - Query.externalBillReceipt
+  - Query.externalBillReceipts
+  - Mutation.createExternalBillReceipt
+  - Mutation.updateExternalBillReceipt
+  - Mutation.deleteExternalBillReceipt
+  relations:
+  - kind: has_one
+    target: ExternalBill
+    via: externalBill
+  - kind: has_one
+    target: ExternalReceipt
+    via: externalReceipt
+- name: ExternalReceipt
+  fields: 10
+  scalar_fields: 8
+  relationships: 2
+  operations:
+  - Query.externalReceipt
+  - Query.externalReceipts
+  - Mutation.createExternalReceipt
+  - Mutation.updateExternalReceipt
+  - Mutation.deleteExternalReceipt
+  relations:
+  - kind: has_many
+    target: ExternalBill
+    via: externalBills
+  - kind: has_one
+    target: User
+    via: user
+- name: Feature
+  fields: 12
+  scalar_fields: 10
+  relationships: 2
+  operations:
+  - Query.feature
+  - Query.features
+  - Mutation.createFeature
+  - Mutation.updateFeature
+  - Mutation.deleteFeature
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: User
+    via: openToSpecificUsers
+- name: FeaturedSlide
+  fields: 17
+  scalar_fields: 15
+  relationships: 2
+  operations:
+  - Query.featuredSlide
+  - Query.featuredSlides
+  - Mutation.createFeaturedSlide
+  - Mutation.updateFeaturedSlide
+  - Mutation.deleteFeaturedSlide
+  relations:
+  - kind: has_many
+    target: Building
+    via: buildings
+  - kind: has_one
+    target: Hood
+    via: hood
+- name: HoodSetting
+  fields: 13
+  scalar_fields: 11
+  relationships: 2
+  operations:
+  - Query.hoodSetting
+  - Query.hoodSettings
+  - Mutation.createHoodSetting
+  - Mutation.updateHoodSetting
+  - Mutation.deleteHoodSetting
+  relations:
+  - kind: has_one
+    target: HoodSettingsGroup
+    via: group
+  - kind: has_many
+    target: HoodSettingValue
+    via: settingValues
+- name: HoodSettingValue
+  fields: 9
+  scalar_fields: 7
+  relationships: 2
+  operations:
+  - Query.hoodSettingValue
+  - Query.hoodSettingValues
+  - Mutation.createHoodSettingValue
+  - Mutation.updateHoodSettingValue
+  - Mutation.deleteHoodSettingValue
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_one
+    target: HoodSetting
+    via: hoodSetting
+- name: InterestGroup
+  fields: 16
+  scalar_fields: 14
+  relationships: 2
+  operations:
+  - Query.interestGroup
+  - Query.interestGroups
+  - Mutation.createInterestGroup
+  - Mutation.updateInterestGroup
+  - Mutation.deleteInterestGroup
+  relations:
+  - kind: has_one
+    target: User
+    via: createdByUser
+  - kind: has_many
+    target: InteractingMemberProfile
+    via: memberProfilesPreview
+- *id027
+- name: PaymentRequestEmail
+  fields: 12
+  scalar_fields: 10
+  relationships: 2
+  operations:
+  - Query.paymentRequestEmail
+  - Query.paymentRequestEmails
+  - Mutation.createPaymentRequestEmail
+  - Mutation.updatePaymentRequestEmail
+  - Mutation.deletePaymentRequestEmail
+  relations:
+  - kind: has_many
+    target: Bill
+    via: bills
+  - kind: has_one
+    target: Member
+    via: member
+- name: ProductCategory
+  fields: 9
+  scalar_fields: 7
+  relationships: 2
+  operations:
+  - Query.productCategory
+  - Query.productCategories
+  - Mutation.createProductCategory
+  - Mutation.updateProductCategory
+  - Mutation.deleteProductCategory
+  relations:
+  - kind: has_many
+    target: Product
+    via: products
+  - kind: has_many
+    target: ProductType
+    via: relevantProductTypes
+- name: RealEstateAmenityCategory
+  fields: 13
+  scalar_fields: 11
+  relationships: 2
+  operations:
+  - Query.realEstateAmenityCategory
+  - Query.realEstateAmenityCategories
+  - Mutation.createRealEstateAmenityCategory
+  - Mutation.updateRealEstateAmenityCategory
+  - Mutation.deleteRealEstateAmenityCategory
+  relations:
+  - kind: has_many
+    target: RealEstateAmenity
+    via: amenities
+  - kind: has_one
+    target: Hood
+    via: hood
+- *id028
+- name: ServiceCategory
+  fields: 11
+  scalar_fields: 9
+  relationships: 2
+  operations:
+  - Query.serviceCategory
+  - Query.serviceCategories
+  - Mutation.createServiceCategory
+  - Mutation.updateServiceCategory
+  - Mutation.deleteServiceCategory
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+  - kind: has_many
+    target: Service
+    via: services
+- name: SocialInteraction
+  fields: 12
+  scalar_fields: 10
+  relationships: 2
+  operations:
+  - Query.socialInteraction
+  - Query.socialInteractions
+  - Mutation.createSocialInteraction
+  - Mutation.updateSocialInteraction
+  - Mutation.deleteSocialInteraction
+  relations:
+  - kind: has_one
+    target: User
+    via: fromUser
+  - kind: has_one
+    target: User
+    via: toUser
+- name: SubProduct
+  fields: 13
+  scalar_fields: 11
+  relationships: 2
+  operations:
+  - Query.subProduct
+  - Query.subProducts
+  - Mutation.createSubProduct
+  - Mutation.updateSubProduct
+  - Mutation.deleteSubProduct
+  relations:
+  - kind: has_one
+    target: Product
+    via: product
+  - kind: has_one
+    target: ProductType
+    via: productType
+- name: SurveyQuestionResponse
+  fields: 13
+  scalar_fields: 11
+  relationships: 2
+  operations:
+  - Query.surveyQuestionResponse
+  - Query.surveyQuestionResponses
+  - Mutation.createSurveyQuestionResponse
+  - Mutation.updateSurveyQuestionResponse
+  - Mutation.deleteSurveyQuestionResponse
+  relations:
+  - kind: has_one
+    target: SurveyQuestion
+    via: question
+  - kind: has_one
+    target: User
+    via: responder
+- name: UserNotificationsSnooze
+  fields: 11
+  scalar_fields: 9
+  relationships: 2
+  operations:
+  - Query.userNotificationsSnooze
+  - Query.userNotificationsSnoozes
+  - Mutation.createUserNotificationsSnooze
+  - Mutation.updateUserNotificationsSnooze
+  - Mutation.deleteUserNotificationsSnooze
+  relations:
+  - kind: has_one
+    target: NotificationCategory
+    via: notificationCategory
+  - kind: has_one
+    target: User
+    via: user
+- name: UserPaymentMethod
+  fields: 16
+  scalar_fields: 14
+  relationships: 2
+  operations:
+  - Query.userPaymentMethod
+  - Query.userPaymentMethods
+  - Mutation.createUserPaymentMethod
+  - Mutation.updateUserPaymentMethod
+  - Mutation.deleteUserPaymentMethod
+  relations:
+  - kind: has_one
+    target: PaymentProvider
+    via: paymentProvider
+  - kind: has_one
+    target: User
+    via: user
+- name: Address
+  fields: 16
+  scalar_fields: 15
+  relationships: 1
+  operations:
+  - Query.address
+  - Query.addresses
+  - Mutation.createAddress
+  - Mutation.updateAddress
+  - Mutation.deleteAddress
+  relations:
+  - kind: has_one
+    target: Coordinate
+    via: coordinate
+- *id029
+- name: BaseRentOverTimeTable
+  fields: 1
+  scalar_fields: 0
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: BaseRentPercentIncrement
+    via: baseRentPercentIncrements
+- name: BroadcastAttachment
+  fields: 9
+  scalar_fields: 8
+  relationships: 1
+  operations:
+  - Query.broadcastAttachment
+  - Query.broadcastAttachments
+  - Mutation.createBroadcastAttachment
+  - Mutation.updateBroadcastAttachment
+  - Mutation.deleteBroadcastAttachment
+  relations:
+  - kind: has_one
+    target: Broadcast
+    via: broadcast
+- name: BuildingSetting
+  fields: 9
+  scalar_fields: 8
+  relationships: 1
+  operations:
+  - Query.buildingSetting
+  - Query.buildingSettings
+  - Mutation.createBuildingSetting
+  - Mutation.updateBuildingSetting
+  - Mutation.deleteBuildingSetting
+  relations:
+  - kind: has_one
+    target: Building
+    via: building
+- name: Calendar
+  fields: 13
+  scalar_fields: 12
+  relationships: 1
+  operations:
+  - Query.calendar
+  - Query.calendars
+  - Mutation.createCalendar
+  - Mutation.updateCalendar
+  - Mutation.deleteCalendar
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+- name: CancelCalendarBookingResult
+  fields: 1
+  scalar_fields: 0
+  relationships: 1
+  relations:
+  - kind: has_one
+    target: CalendarBooking
+    via: calendarBooking
+- name: CommunityTitle
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.communityTitle
+  - Query.communityTitles
+  - Mutation.createCommunityTitle
+  - Mutation.updateCommunityTitle
+  - Mutation.deleteCommunityTitle
+  relations:
+  - kind: has_one
+    target: MemberProfile
+    via: memberProfile
+- name: EmailNotificationSettings
+  fields: 3
+  scalar_fields: 2
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: DispatchConfig
+    via: dispatchConfig
+- name: ExternalBill
+  fields: 11
+  scalar_fields: 10
+  relationships: 1
+  operations:
+  - Query.externalBill
+  - Query.externalBills
+  - Mutation.createExternalBill
+  - Mutation.updateExternalBill
+  - Mutation.deleteExternalBill
+  relations:
+  - kind: has_many
+    target: ExternalReceipt
+    via: externalReceipts
+- name: FeatureAnnouncement
+  fields: 13
+  scalar_fields: 12
+  relationships: 1
+  operations:
+  - Query.featureAnnouncement
+  - Query.featureAnnouncements
+  - Mutation.createFeatureAnnouncement
+  - Mutation.updateFeatureAnnouncement
+  - Mutation.deleteFeatureAnnouncement
+  relations:
+  - kind: has_many
+    target: Hood
+    via: hoods
+- name: FetchCsatSurveysResponse
+  fields: 7
+  scalar_fields: 6
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: SurveyQuestion
+    via: questions
+- name: FindNeighborsQueryOutput
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: MemberProfile
+    via: memberProfiles
+- name: InteractingMemberProfile
+  fields: 6
+  scalar_fields: 5
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: CommunityTitle
+    via: communityTitles
+- name: MemberAddress
+  fields: 15
+  scalar_fields: 14
+  relationships: 1
+  operations:
+  - Query.memberAddress
+  - Query.memberAddresses
+  - Mutation.createMemberAddress
+  - Mutation.updateMemberAddress
+  - Mutation.deleteMemberAddress
+  relations:
+  - kind: has_one
+    target: Member
+    via: member
+- name: MemberProfilePetsField
+  fields: 9
+  scalar_fields: 8
+  relationships: 1
+  operations:
+  - Query.memberProfilePetsField
+  - Query.memberProfilePetsFields
+  - Mutation.createMemberProfilePetsField
+  - Mutation.updateMemberProfilePetsField
+  - Mutation.deleteMemberProfilePetsField
+  relations:
+  - kind: has_many
+    target: Pet
+    via: pets
+- name: MemberProfileSocialTagsField
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.memberProfileSocialTagsField
+  - Query.memberProfileSocialTagsFields
+  - Mutation.createMemberProfileSocialTagsField
+  - Mutation.updateMemberProfileSocialTagsField
+  - Mutation.deleteMemberProfileSocialTagsField
+  relations:
+  - kind: has_many
+    target: SocialTag
+    via: tags
+- name: MobileAppPage
+  fields: 13
+  scalar_fields: 12
+  relationships: 1
+  operations:
+  - Query.mobileAppPage
+  - Query.mobileAppPages
+  - Mutation.createMobileAppPage
+  - Mutation.updateMobileAppPage
+  - Mutation.deleteMobileAppPage
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+- name: NotificationCategory
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.notificationCategory
+  - Query.notificationCategories
+  - Mutation.createNotificationCategory
+  - Mutation.updateNotificationCategory
+  - Mutation.deleteNotificationCategory
+  relations:
+  - kind: has_many
+    target: Notification
+    via: notifications
+- name: NotificationSetting
+  fields: 9
+  scalar_fields: 8
+  relationships: 1
+  operations:
+  - Query.notificationSetting
+  - Query.notificationSettings
+  - Mutation.createNotificationSetting
+  - Mutation.updateNotificationSetting
+  - Mutation.deleteNotificationSetting
+  relations:
+  - kind: has_one
+    target: EmailNotificationSetting
+    via: emailSetting
+- name: PayWithPayoutResponse
+  fields: 3
+  scalar_fields: 2
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: BillIdToAmountDue
+    via: billIdsToNewAmountDue
+- name: PaymentSetting
+  fields: 8
+  scalar_fields: 7
+  relationships: 1
+  operations:
+  - Query.paymentSetting
+  - Query.paymentSettings
+  - Mutation.createPaymentSetting
+  - Mutation.updatePaymentSetting
+  - Mutation.deletePaymentSetting
+  relations:
+  - kind: has_one
+    target: Hood
+    via: hood
+- *id030
+- name: Polygon
+  fields: 1
+  scalar_fields: 0
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: Coordinate
+    via: coordinates
+- *id031
+- name: PricedEventAttendee
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_one
+    target: EventAttendee
+    via: attendee
+- name: ProductType
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.productType
+  - Query.productTypes
+  - Mutation.createProductType
+  - Mutation.updateProductType
+  - Mutation.deleteProductType
+  relations:
+  - kind: has_one
+    target: ProductCategory
+    via: productCategory
+- name: PropertyManagementOffice
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.propertyManagementOffice
+  - Query.propertyManagementOffices
+  - Mutation.createPropertyManagementOffice
+  - Mutation.updatePropertyManagementOffice
+  - Mutation.deletePropertyManagementOffice
+  relations:
+  - kind: has_one
+    target: Portfolio
+    via: portfolio
+- name: PushNotificationSettings
+  fields: 3
+  scalar_fields: 2
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: PushDispatchConfig
+    via: dispatchConfig
+- name: SMSNotificationSettings
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: DispatchConfig
+    via: dispatchConfig
+- name: ScheduledBroadcast
+  fields: 12
+  scalar_fields: 11
+  relationships: 1
+  operations:
+  - Query.scheduledBroadcast
+  - Query.scheduledBroadcasts
+  - Mutation.createScheduledBroadcast
+  - Mutation.updateScheduledBroadcast
+  - Mutation.deleteScheduledBroadcast
+  relations:
+  - kind: has_one
+    target: Broadcast
+    via: broadcastTemplate
+- name: SendNotificationToUsersResult
+  fields: 1
+  scalar_fields: 0
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: SendNotificationToUserResult
+    via: results
+- name: SocialReaction
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.socialReaction
+  - Query.socialReactions
+  - Mutation.createSocialReaction
+  - Mutation.updateSocialReaction
+  - Mutation.deleteSocialReaction
+  relations:
+  - kind: has_one
+    target: User
+    via: user
+- name: SocialReactionsAggregate
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_one
+    target: SocialReactionsAggregateField
+    via: LIKE
+- name: SubscribeToProductResult
+  fields: 1
+  scalar_fields: 0
+  relationships: 1
+  relations:
+  - kind: has_one
+    target: SubscriptionContract
+    via: subscriptionContract
+- name: SurveyResult
+  fields: 10
+  scalar_fields: 9
+  relationships: 1
+  operations:
+  - Query.surveyResult
+  - Query.surveyResults
+  - Mutation.createSurveyResult
+  - Mutation.updateSurveyResult
+  - Mutation.deleteSurveyResult
+  relations:
+  - kind: has_one
+    target: User
+    via: user
+- name: SurveyUserAction
+  fields: 8
+  scalar_fields: 7
+  relationships: 1
+  operations:
+  - Query.surveyUserAction
+  - Query.surveyUserActions
+  - Mutation.createSurveyUserAction
+  - Mutation.updateSurveyUserAction
+  - Mutation.deleteSurveyUserAction
+  relations:
+  - kind: has_one
+    target: Survey
+    via: survey
+- name: TreasureItem
+  fields: 15
+  scalar_fields: 14
+  relationships: 1
+  operations:
+  - Query.treasureItem
+  - Query.treasureItems
+  - Mutation.createTreasureItem
+  - Mutation.updateTreasureItem
+  - Mutation.deleteTreasureItem
+  relations:
+  - kind: has_one
+    target: MemberProfile
+    via: memberProfile
+- name: UnitStatusLog
+  fields: 9
+  scalar_fields: 8
+  relationships: 1
+  operations:
+  - Query.unitStatusLog
+  - Query.unitStatusLogs
+  - Mutation.createUnitStatusLog
+  - Mutation.updateUnitStatusLog
+  - Mutation.deleteUnitStatusLog
+  relations:
+  - kind: has_one
+    target: Unit
+    via: unit
+- name: UserApiKey
+  fields: 9
+  scalar_fields: 8
+  relationships: 1
+  operations:
+  - Query.userApiKey
+  - Query.userApiKeys
+  - Mutation.createUserApiKey
+  - Mutation.updateUserApiKey
+  - Mutation.deleteUserApiKey
+  relations:
+  - kind: has_one
+    target: User
+    via: user
+- name: UserSurveyStatus
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: SurveyQuestionResponse
+    via: answers
+- name: paymentProviderFeesSetting
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_many
+    target: paymentMethodFee
+    via: paymentMethodFees
+- name: purchaseServiceProductResult
+  fields: 3
+  scalar_fields: 2
+  relationships: 1
+  relations:
+  - kind: has_one
+    target: ServiceProductOrder
+    via: order
+- name: subscribeServiceProductResult
+  fields: 2
+  scalar_fields: 1
+  relationships: 1
+  relations:
+  - kind: has_one
+    target: SubscriptionContract
+    via: subscriptionContract
+- name: AlbertDog
+  fields: 7
+  scalar_fields: 7
+  relationships: 0
+  operations:
+  - Query.albertDog
+  - Query.albertDogs
+  - Mutation.createAlbertDog
+  - Mutation.updateAlbertDog
+  - Mutation.deleteAlbertDog
+- name: AutoBillingSettings
+  fields: 4
+  scalar_fields: 4
+  relationships: 0
+- name: BroadcastStatParam
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: Byline
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: CalculateTransactionFeeResponse
+  fields: 4
+  scalar_fields: 4
+  relationships: 0
+- name: CalculateTransferFeeResponse
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: CalendarTimeSlot
+  fields: 5
+  scalar_fields: 5
+  relationships: 0
+- name: Content
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: ContractEventConfiguration
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: Currency
+  fields: 9
+  scalar_fields: 9
+  relationships: 0
+  operations:
+  - Query.currency
+  - Query.currencies
+  - Mutation.createCurrency
+  - Mutation.updateCurrency
+  - Mutation.deleteCurrency
+- name: DispatchConfig
+  fields: 5
+  scalar_fields: 5
+  relationships: 0
+- name: EventAttendeesGroupby
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: FeatureFlag
+  fields: 4
+  scalar_fields: 4
+  relationships: 0
+- name: FeedClassification
+  fields: 12
+  scalar_fields: 12
+  relationships: 0
+  operations:
+  - Query.feedClassification
+  - Query.feedClassifications
+  - Mutation.createFeedClassification
+  - Mutation.updateFeedClassification
+  - Mutation.deleteFeedClassification
+- name: MemberPaymentOsCustomer
+  fields: 9
+  scalar_fields: 9
+  relationships: 0
+  operations:
+  - Query.memberPaymentOsCustomer
+  - Query.memberPaymentOsCustomers
+  - Mutation.createMemberPaymentOsCustomer
+  - Mutation.updateMemberPaymentOsCustomer
+  - Mutation.deleteMemberPaymentOsCustomer
+- name: MemberProfileBlock
+  fields: 8
+  scalar_fields: 8
+  relationships: 0
+  operations:
+  - Query.memberProfileBlock
+  - Query.memberProfileBlocks
+  - Mutation.createMemberProfileBlock
+  - Mutation.updateMemberProfileBlock
+  - Mutation.deleteMemberProfileBlock
+- name: MemberProfileCallToActionField
+  fields: 10
+  scalar_fields: 10
+  relationships: 0
+  operations:
+  - Query.memberProfileCallToActionField
+  - Query.memberProfileCallToActionFields
+  - Mutation.createMemberProfileCallToActionField
+  - Mutation.updateMemberProfileCallToActionField
+  - Mutation.deleteMemberProfileCallToActionField
+- name: MemberProfileDateField
+  fields: 9
+  scalar_fields: 9
+  relationships: 0
+  operations:
+  - Query.memberProfileDateField
+  - Query.memberProfileDateFields
+  - Mutation.createMemberProfileDateField
+  - Mutation.updateMemberProfileDateField
+  - Mutation.deleteMemberProfileDateField
+- name: MemberProfilePronounsField
+  fields: 10
+  scalar_fields: 10
+  relationships: 0
+  operations:
+  - Query.memberProfilePronounsField
+  - Query.memberProfilePronounsFields
+  - Mutation.createMemberProfilePronounsField
+  - Mutation.updateMemberProfilePronounsField
+  - Mutation.deleteMemberProfilePronounsField
+- name: MemberProfileStringField
+  fields: 9
+  scalar_fields: 9
+  relationships: 0
+  operations:
+  - Query.memberProfileStringField
+  - Query.memberProfileStringFields
+  - Mutation.createMemberProfileStringField
+  - Mutation.updateMemberProfileStringField
+  - Mutation.deleteMemberProfileStringField
+- name: PaymentProvider
+  fields: 7
+  scalar_fields: 7
+  relationships: 0
+  operations:
+  - Query.paymentProvider
+  - Query.paymentProviders
+  - Mutation.createPaymentProvider
+  - Mutation.updatePaymentProvider
+  - Mutation.deletePaymentProvider
+- name: SocialMomentSentiment
+  fields: 8
+  scalar_fields: 8
+  relationships: 0
+  operations:
+  - Query.socialMomentSentiment
+  - Query.socialMomentSentiments
+  - Mutation.createSocialMomentSentiment
+  - Mutation.updateSocialMomentSentiment
+  - Mutation.deleteSocialMomentSentiment
+- name: SocialMomentView
+  fields: 8
+  scalar_fields: 8
+  relationships: 0
+  operations:
+  - Query.socialMomentView
+  - Query.socialMomentViews
+  - Mutation.createSocialMomentView
+  - Mutation.updateSocialMomentView
+  - Mutation.deleteSocialMomentView
+- name: SocialReactionsAggregateField
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: SocialTag
+  fields: 8
+  scalar_fields: 8
+  relationships: 0
+  operations:
+  - Query.socialTag
+  - Query.socialTags
+  - Mutation.createSocialTag
+  - Mutation.updateSocialTag
+  - Mutation.deleteSocialTag
+- name: SurveyQuestionVote
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- name: TaxRate
+  fields: 11
+  scalar_fields: 11
+  relationships: 0
+  operations:
+  - Query.taxRate
+  - Query.taxRates
+  - Mutation.createTaxRate
+  - Mutation.updateTaxRate
+  - Mutation.deleteTaxRate
+- name: TransitStop
+  fields: 5
+  scalar_fields: 5
+  relationships: 0
+- name: UserPushNotificationToken
+  fields: 10
+  scalar_fields: 10
+  relationships: 0
+  operations:
+  - Query.userPushNotificationToken
+  - Query.userPushNotificationTokens
+- name: VennerNotificationConfiguration
+  fields: 3
+  scalar_fields: 3
+  relationships: 0
+- *id032

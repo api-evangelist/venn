@@ -1,0 +1,124 @@
+generated: '2026-09-02'
+method: probed
+source: https://api.venn.city/production/graphql
+note: >-
+  Venn publishes no developer authentication guide. This profile is assembled from
+  three public, unauthenticated sources: (1) live behaviour of the Venn tenant
+  GraphQL gateway at https://api.venn.city/production/graphql, (2) the OpenID
+  Connect discovery document of the AWS Cognito user pool that Venn's own operator
+  dashboard bundle names as its identity provider, and (3) the public README of
+  Venn's first-party `@venncity/extension-sdk` npm package, which documents how a
+  resident token reaches an embedded app. No credentials were used and no access
+  control was defeated.
+apis:
+  - name: Venn Tenant GraphQL API
+    base_url: https://api.venn.city/production/graphql
+    transport: https
+    schemes:
+      - id: bearer-jwt
+        type: http
+        scheme: bearer
+        bearer_format: JWT
+        in: header
+        header: Authorization
+        value: 'Bearer <cognito-access-token>'
+        issuer: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx
+        jwks_uri: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx/.well-known/jwks.json
+        signing_alg: RS256
+        evidence: >-
+          The gateway advertises `Authorization` in its
+          Access-Control-Allow-Headers on every response; the extension SDK README
+          states the bridge delivers "the resident's existing Cognito token" and
+          that "the Venn tenant GraphQL API is the authority that validates it (a
+          401 means 'ask the host for a fresh one')".
+        required: true
+      - id: api-key
+        type: apiKey
+        in: header
+        header: X-Api-Key
+        evidence: >-
+          `X-Api-Key` is advertised in the gateway's Access-Control-Allow-Headers,
+          and the schema exposes a first-class `UserApiKey` entity with
+          `userApiKey`/`userApiKeys` queries and
+          `createUserApiKey`/`updateUserApiKey`/`deleteUserApiKey` mutations — so
+          per-user API keys are a modelled, self-service credential. No public
+          documentation describes how to obtain or scope one.
+        required: false
+        documented_publicly: false
+      - id: aws-sigv4
+        type: http
+        scheme: aws-sigv4
+        evidence: >-
+          `X-Amz-Date`, `X-Amz-Security-Token` and `X-Amz-User-Agent` are advertised
+          in Access-Control-Allow-Headers, which is the AWS Amplify/API Gateway
+          default set. Present at the edge; not observed to be the primary
+          credential.
+        required: false
+identity_provider:
+  vendor: AWS Cognito
+  region: eu-central-1
+  user_pool: eu-central-1_cH7XNjcIx
+  domain: https://admin-tool.auth.eu-central-1.amazoncognito.com
+  discovery: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx/.well-known/openid-configuration
+  discovery_status: 200
+  document: ../well-known/venn-openid-configuration.json
+  protocols:
+    - openid-connect
+    - oauth2
+  flows:
+    - authorization_code
+    - implicit
+  response_types: [code, token]
+  token_endpoint_auth_methods: [client_secret_basic, client_secret_post]
+  revocation_endpoint: https://admin-tool.auth.eu-central-1.amazoncognito.com/oauth2/revoke
+  end_session_endpoint: https://admin-tool.auth.eu-central-1.amazoncognito.com/logout
+  note: >-
+    This pool serves Venn's operator/admin tooling. Resident-facing sign-in in the
+    mobile app issues a Cognito token of the same family (per the extension SDK
+    README, which hands the guest both a `token` and a `refreshToken` and tells it
+    to refresh "yourself against Cognito"). Whether residents and operators share
+    this pool could not be established from public sources.
+authorization:
+  model: role-based, tenant-scoped
+  evidence: >-
+    The schema exposes `Role` / `roles` / `createRole` and per-community
+    (`hood`), per-building and per-portfolio settings entities; errors from the
+    persistency service on unauthenticated reads are tenant-authorization failures,
+    not schema failures.
+  scopes_document: ../scopes/venn-scopes.yml
+observed_behaviour:
+  - probe: 'POST /production/graphql  {__schema{queryType{name}}}  (no credentials)'
+    status: 200
+    result: >-
+      Full introspection succeeded anonymously — 1,991 types, 320 query fields,
+      357 mutation fields. The CONTRACT is public.
+  - probe: 'POST /production/graphql  {users(first:1){id}}  (no credentials)'
+    status: 200
+    result: >-
+      GraphQL error `VennUnknownError` from serviceName `persistency`, data null.
+      The DATA is gated. Introspection being open does not imply readable data.
+  - probe: 'GET https://api.venn.city/  and every non-stage path'
+    status: 403
+    result: AWS API Gateway ForbiddenException; only the `/production/` stage is routable.
+mfa:
+  supported: true
+  evidence: >-
+    `@venncity/extension-sdk` exposes `invokeElevatedPermissions(reason)` for a
+    step-up 2FA prompt, documented in its README as "stubbed today".
+  status: partial
+gaps:
+  - No public authentication documentation, quickstart or key-issuance flow.
+  - No documented way for a third party to obtain credentials; access appears to follow a customer contract.
+  - Anonymous GraphQL introspection is enabled on the production gateway. Venn may or may not intend this.
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://api.venn.city/production/graphql
+      status: 200
+    - url: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cH7XNjcIx/.well-known/openid-configuration
+      status: 200
+    - url: https://registry.npmjs.org/@venncity%2Fextension-sdk
+      status: 200
+    - url: https://www.npmjs.com/package/@venncity/extension-sdk
+      status: 403
+      note: npmjs.com web UI refuses non-browser user agents; the registry API above returned the same package metadata and README.

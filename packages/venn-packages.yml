@@ -1,0 +1,232 @@
+generated: '2026-09-02'
+method: searched
+source: https://www.npmjs.com/org/venncity
+note: >-
+  Venn publishes under the public `@venncity` npm scope (20 packages, all
+  first-party; the scope is Venn's, published by the `venncity-admin` account per
+  the extension-sdk README). Only two are integration-facing and current:
+  `@venncity/extension-sdk` (the Venn Extensions bridge, first published
+  2026-08-24) and `@venncity/bi-events` (the typed BI event catalog). The
+  remaining eighteen are backend framework libraries from Venn's `graphql-clou`
+  stack — real, first-party, but internal build-time dependencies rather than API
+  client libraries, and most last shipped in 2022-2023. No PyPI, RubyGems,
+  crates.io, NuGet, Maven Central or Go module was found for Venn. There is no
+  general-purpose client SDK for the Venn tenant GraphQL API; consumers use a
+  standard GraphQL client (Venn's own dashboard uses Apollo Client) against
+  https://api.venn.city/production/graphql.
+registries_probed:
+  - registry: npm
+    result: 20 packages under @venncity
+  - registry: pypi
+    result: none (venncity, venn-city -> 404)
+  - registry: rubygems
+    result: not published
+  - registry: crates.io
+    result: not published
+  - registry: nuget
+    result: not published
+  - registry: maven-central
+    result: not published
+  - registry: pkg.go.dev
+    result: not published
+packages:
+  - language: javascript
+    registry: npm
+    name: '@venncity/extension-sdk'
+    url: https://www.npmjs.com/package/@venncity/extension-sdk
+    install: npm install @venncity/extension-sdk
+    official: true
+    version: 0.1.1
+    published: '2026-08-25'
+    first_published: '2026-08-24'
+    license: UNLICENSED
+    repository: https://github.com/venn-city/venn-extension-sdk
+    role: >-
+      Bridge SDK for Venn Extensions — web apps hosted inside the Venn mobile app
+      (React Native WebView) or the Venn web app (iframe). Carries app context,
+      the resident's Cognito token, native navigation, back-stack handoff,
+      telemetry and an elevated-permissions (2FA) request over postMessage.
+    note: >-
+      The only client-side integration SDK Venn ships. Two versions published, both
+      in August 2026 — newer than every other artifact in this profile, so this is
+      an actively developed surface, not a stale one. The repository it names is
+      private (github.com/venn-city/venn-extension-sdk returns 404 anonymously);
+      the README on npm is the only public documentation of it.
+  - language: javascript
+    registry: npm
+    name: '@venncity/bi-events'
+    url: https://www.npmjs.com/package/@venncity/bi-events
+    install: npm install @venncity/bi-events
+    official: true
+    version: 0.13.9
+    published: '2026-07-26'
+    role: Typed wrapper and generated catalog for Venn BI events.
+    note: Repository (github.com/venn-city/bi-events) is private.
+  - language: javascript
+    registry: npm
+    name: '@venncity/graphql-pagination-enforce'
+    url: https://www.npmjs.com/package/@venncity/graphql-pagination-enforce
+    install: npm install @venncity/graphql-pagination-enforce
+    official: true
+    version: 1.3.49
+    published: '2023-03-15'
+    role: >-
+      Server-side library that enforces cursor pagination on Venn's GraphQL
+      surface. Named here because it is the observable cause of the
+      `pagination_enforce_error` an unpaginated query returns from
+      api.venn.city/production/graphql — see conventions/venn-conventions.yml.
+    note: Backend framework library, not a client SDK. Last release 2023-03-15.
+  - language: javascript
+    registry: npm
+    name: '@venncity/errors'
+    url: https://www.npmjs.com/package/@venncity/errors
+    install: npm install @venncity/errors
+    official: true
+    version: 2.1.25
+    published: '2023-03-15'
+    role: Error types behind the `extensions.code` values on Venn's GraphQL errors.
+    note: Backend framework library, not a client SDK. Last release 2023-03-15.
+  - language: javascript
+    registry: npm
+    name: '@venncity/opencrud-schema-provider'
+    url: https://www.npmjs.com/package/@venncity/opencrud-schema-provider
+    install: npm install @venncity/opencrud-schema-provider
+    official: true
+    version: 1.4.18
+    published: '2022-08-30'
+    role: >-
+      OpenCRUD schema generation. This is the library that produces the
+      `*Connection` / `*WhereInput` / `*OrderByInput` shape seen throughout the
+      published schema.
+    note: Backend framework library, not a client SDK. Last release 2022-08-30.
+  - language: javascript
+    registry: npm
+    name: '@venncity/base-dao'
+    url: https://www.npmjs.com/package/@venncity/base-dao
+    official: true
+    version: 2.5.4
+    published: '2023-02-02'
+    note: Backend framework library (graphql-clou stack). Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/sequelize-data-provider'
+    url: https://www.npmjs.com/package/@venncity/sequelize-data-provider
+    official: true
+    version: 1.9.1
+    published: '2022-08-30'
+    note: Backend framework library (graphql-clou stack). Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/sequelize-model'
+    url: https://www.npmjs.com/package/@venncity/sequelize-model
+    official: true
+    version: 1.8.22
+    published: '2022-08-30'
+    note: Backend framework library (graphql-clou stack). Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/cascade-delete'
+    url: https://www.npmjs.com/package/@venncity/cascade-delete
+    official: true
+    version: 1.2.62
+    published: '2022-08-30'
+    note: Backend framework library (graphql-clou stack). Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/nested-mutation-hooks'
+    url: https://www.npmjs.com/package/@venncity/nested-mutation-hooks
+    official: true
+    version: 1.3.42
+    published: '2022-03-20'
+    note: Backend framework library (graphql-clou stack). Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/nested-config'
+    url: https://www.npmjs.com/package/@venncity/nested-config
+    official: true
+    version: 3.1.30
+    published: '2023-03-15'
+    note: Backend framework library. Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/package-info'
+    url: https://www.npmjs.com/package/@venncity/package-info
+    official: true
+    version: 1.1.74
+    published: '2023-03-15'
+    note: Backend framework library. Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/clou-utils'
+    url: https://www.npmjs.com/package/@venncity/clou-utils
+    official: true
+    version: 2.0.9
+    published: '2022-03-15'
+    note: Backend framework library (graphql-clou stack). Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/graphql-demo-basic'
+    url: https://www.npmjs.com/package/@venncity/graphql-demo-basic
+    official: true
+    version: 1.0.4
+    published: '2023-02-02'
+    note: Demo project for the graphql-clou stack. Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/prisma-generate-schema'
+    url: https://www.npmjs.com/package/@venncity/prisma-generate-schema
+    official: true
+    version: 1.22.0
+    published: '2021-10-14'
+    note: Fork of a Prisma 1 tool. Not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/prisma-datamodel'
+    url: https://www.npmjs.com/package/@venncity/prisma-datamodel
+    official: true
+    version: 1.23.0-alpha.1
+    published: '2020-07-15'
+    note: Fork of a Prisma 1 tool. Not a client SDK. Oldest package in the scope.
+  - language: javascript
+    registry: npm
+    name: '@venncity/serverless-sns-sqs-lambda'
+    url: https://www.npmjs.com/package/@venncity/serverless-sns-sqs-lambda
+    official: true
+    version: 0.1.16
+    published: '2023-11-23'
+    note: Fork of agiledigital/serverless-sns-sqs-lambda. Build tooling, not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/jest-config-server'
+    url: https://www.npmjs.com/package/@venncity/jest-config-server
+    official: true
+    version: 3.4.4
+    published: '2022-01-20'
+    note: Shared Jest config. Build tooling, not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/prettier-config-server'
+    url: https://www.npmjs.com/package/@venncity/prettier-config-server
+    official: true
+    version: 1.1.7
+    published: '2021-04-06'
+    note: Shared Prettier config. Build tooling, not a client SDK.
+  - language: javascript
+    registry: npm
+    name: '@venncity/bedrock'
+    url: https://www.npmjs.com/package/@venncity/bedrock
+    official: true
+    version: 1.0.0
+    published: '2025-06-16'
+    note: Placeholder package ("test lib"). Not a client SDK.
+currency:
+  newest_release: '2026-08-25'
+  newest_package: '@venncity/extension-sdk'
+  oldest_release: '2020-07-15'
+  integration_facing_and_current: 2
+  stale_backend_libraries: 18
+x-evidence:
+  checked: '2026-09-02'
+  url: https://registry.npmjs.org/-/v1/search?text=%40venncity&size=250
+  http_status: 200
+  packages_found: 20

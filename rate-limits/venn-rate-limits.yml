@@ -1,0 +1,56 @@
+generated: '2026-09-02'
+method: probed
+source: https://api.venn.city/production/graphql
+note: >-
+  Venn documents no rate limits — there is no developer portal to document them in.
+  Live unauthenticated calls to the production GraphQL gateway were inspected for
+  runtime rate-limit signalling and none is emitted: no X-RateLimit-*, no
+  RateLimit-* (RFC 9239 draft), no Retry-After, no quota headers of any kind. An
+  agent calling this API has no way to learn its budget except by being throttled.
+  This is a recorded zero backed by an observed response, not an unchecked field.
+limit_count: 0
+limits: []
+headers_observed: []
+headers_probed:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - RateLimit-Limit
+  - RateLimit-Remaining
+  - RateLimit-Reset
+  - RateLimit-Policy
+  - Retry-After
+response_headers_actually_returned:
+  - x-amzn-requestid
+  - x-amz-apigw-id
+  - venn-request-id
+  - x-amzn-trace-id
+  - x-powered-by
+  - etag
+  - access-control-allow-origin
+  - access-control-allow-headers
+  - access-control-allow-credentials
+  - x-cache
+  - via
+  - x-amz-cf-pop
+  - x-amz-cf-id
+exhaustion_status: unknown
+exhaustion_note: >-
+  Not established. No throttling was triggered during this pass and none would be
+  triggered deliberately. AWS API Gateway sits in front of the endpoint and can
+  return 429 with its own body, but no policy is published.
+query_cost_limits:
+  published: false
+  note: >-
+    No query depth limit, complexity limit or cost header is advertised — the usual
+    GraphQL equivalents of a rate limit. The one enforced budget in the contract is
+    pagination: every list field must carry `first` or `last` or the gateway
+    rejects the query with `pagination_enforce_error`, which caps result size but
+    not request rate.
+docs: null
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://api.venn.city/production/graphql
+      status: 200
+      note: headers inspected on a live unauthenticated POST

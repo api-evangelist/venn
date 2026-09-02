@@ -1,0 +1,932 @@
+generated: '2026-09-02'
+method: searched
+source: https://docs.venn.city/
+name: Venn Platform Release Notes
+url: https://docs.venn.city/
+note: Venn publishes a dated release-notes site at docs.venn.city. The site is a client-rendered SPA (React
+  Router, isSpaMode) that serves an empty 3.4KB HTML shell to any crawler, so the entries below were read
+  from the release markdown the site ships in its own public JavaScript bundle (/assets/Tag-fDhROQn9.js),
+  which embeds all 65 release documents verbatim with their YAML frontmatter. Nothing here is authored
+  by API Evangelist. Venn ships no machine-readable feed (no RSS/Atom/JSON) for these notes.
+scheme: semver, two independently versioned tracks per release (backend + frontend)
+current_version:
+  backend: v2.4.58
+  frontend: v3.25.59
+  date: '2026-09-01'
+window:
+  from: '2026-05-15'
+  to: '2026-09-01'
+  releases: 65
+cadence: roughly 4-5 releases per week across the observed window
+totals:
+  features: 167
+  improvements: 180
+  fixes: 204
+breaking_changes_declared: 0
+machine_readable_feed: null
+entries:
+- date: '2026-09-01'
+  version: v2.4.58
+  frontend_version: v3.25.59
+  title: Venn Platform Release 2026-09-01
+  counts:
+    features: 9
+    improvements: 4
+    fixes: 5
+  highlights:
+  - Property managers can now send prospects a leasing quote through a step-by-step builder on the prospect
+    profile, covering units, terms and rent, fees, and a final summary.
+  - For clients with the AI concierge, a default "Residents who spoke with AI" segment now appears on
+    the residents page to identify residents who have ever conversed with the AI concierge.
+  - Administrators can now map maintenance statuses per property management system integration from a
+    new Maintenance Integrations settings tab.
+  breaking: false
+- date: '2026-08-30'
+  version: v2.4.57
+  frontend_version: v3.25.58
+  title: Venn Platform Release 2026-08-30
+  counts:
+    features: 2
+    improvements: 6
+    fixes: 6
+  highlights:
+  - Leasing teams can now build, finalize, and share resident quotes, complete with hosted quote pages.
+  - A new light mode for the Hub gives users a sun/moon toggle in the profile menu, with dark mode remaining
+    the default.
+  - Property managers get an updated onsite maintenance experience with new metrics and a needs-attention
+    view to help prioritize work.
+  breaking: false
+- date: '2026-08-25'
+  version: v2.4.56
+  frontend_version: v3.25.57
+  title: Venn Platform Release 2026-08-25
+  counts:
+    features: 4
+    improvements: 6
+    fixes: 4
+  highlights:
+  - System administrators can now force-skip an applicant's pending or in-progress screening step from
+    the application review screen.
+  - System administrators can now exclude an application from automatic cancellation so automations skip
+    it and its co-applicants.
+  - The Moderation tab now includes an interest group filter so teams can narrow auto-moderated chat content
+    by interest group.
+  breaking: false
+- date: '2026-08-20'
+  version: v2.4.55
+  frontend_version: v3.25.56
+  title: Venn Platform Release 2026-08-20
+  counts:
+    features: 1
+    improvements: 3
+    fixes: 1
+  highlights:
+  - Property managers can now build native move-in checklist tasks using typed components such as titles,
+    CTA cards, email actions, and provider details, with a live preview of the resident experience.
+  - Applicants residing outside the US now show a clear "not supported" status on credit, criminal, eviction,
+    and sanctions checks that US bureaus cannot perform.
+  breaking: false
+- date: '2026-08-19'
+  version: v2.4.54
+  frontend_version: v3.25.55
+  title: Venn Platform Release 2026-08-19
+  counts:
+    features: 5
+    improvements: 3
+    fixes: 10
+  highlights:
+  - Property managers can now define per-category service-level agreements to set expected timing for
+    maintenance requests.
+  - Work orders can now be assigned to multiple technicians at once.
+  - A new "Unread resident message" workflow trigger lets teams automate follow-ups when a resident's
+    message goes unanswered.
+  breaking: false
+- date: '2026-08-17'
+  version: v2.4.53
+  frontend_version: v3.25.54
+  title: Venn Platform Release 2026-08-17
+  counts:
+    features: 2
+    improvements: 1
+    fixes: 2
+  highlights:
+  - Property managers can now publish a single community post across multiple communities at once.
+  - Site teams can now manage technicians directly from the platform.
+  - Unit turns boards can now be filtered by building for faster, more relevant views.
+  breaking: false
+- date: '2026-08-16'
+  version: v2.4.52
+  frontend_version: v3.25.53
+  title: Venn Platform Release 2026-08-16
+  counts:
+    features: 0
+    improvements: 2
+    fixes: 0
+  highlights:
+  - Property managers can now send and receive text messages with residents directly from the platform.
+  breaking: false
+- date: '2026-08-16'
+  version: v2.4.51
+  frontend_version: v3.25.52
+  title: Venn Platform Release 2026-08-16
+  counts:
+    features: 4
+    improvements: 2
+    fixes: 1
+  highlights:
+  - Property managers can now manage unit turns directly in a dedicated interface.
+  - Maintenance teams can now add, update, and remove technicians and assign them to tickets and scheduled
+    work.
+  - Residents completing move-out can now shop for internet service through the Hum app embedded in their
+    move-out checklist.
+  breaking: false
+- date: '2026-08-13'
+  version: v2.4.50
+  frontend_version: v3.25.51
+  title: Venn Platform Release 2026-08-13
+  counts:
+    features: 1
+    improvements: 0
+    fixes: 1
+  highlights:
+  - Property managers can now create away notice workflows that apply to specific building services.
+  breaking: false
+- date: '2026-08-12'
+  version: v2.4.48
+  frontend_version: v3.25.49
+  title: Venn Platform Release 2026-08-12
+  counts:
+    features: 1
+    improvements: 3
+    fixes: 1
+  highlights:
+  - Property managers can now delete workflows in Automations, which archives and disables them, and can
+    filter workflows by enabled or disabled status.
+  - Prospect source pickers now display readable source names instead of internal codes.
+  breaking: false
+- date: '2026-08-11'
+  version: v2.4.47
+  frontend_version: v3.25.48
+  title: Venn Platform Release 2026-08-11
+  counts:
+    features: 0
+    improvements: 4
+    fixes: 2
+  highlights:
+  - Property managers can now see a pending renewal indicator in the members table when a renewal is already
+    scheduled.
+  breaking: false
+- date: '2026-08-10'
+  version: v2.4.46
+  frontend_version: v3.25.47
+  title: Venn Platform Release 2026-08-10
+  counts:
+    features: 4
+    improvements: 3
+    fixes: 3
+  highlights:
+  - Property managers can now log packages with a warning that appears when a matching package was already
+    recorded, helping prevent duplicate entries.
+  - The Experience Hub now supports German, letting residents view the Hub in their preferred language.
+  - The RealPage integration now creates and syncs prospects and ILS sources, keeping leasing data aligned
+    across systems.
+  breaking: false
+- date: '2026-08-09'
+  version: v2.4.45
+  frontend_version: v3.25.46
+  title: Venn Platform Release 2026-08-09
+  counts:
+    features: 2
+    improvements: 0
+    fixes: 4
+  highlights:
+  - Property managers can now enter a package type as free text with suggestions drawn from previously
+    used values when logging packages.
+  - Maintenance teams can now manage service request categories, including setting a default priority
+    for each category.
+  breaking: false
+- date: '2026-08-05'
+  version: v2.4.43
+  frontend_version: v3.25.44
+  title: Venn Platform Release 2026-08-05
+  counts:
+    features: 2
+    improvements: 2
+    fixes: 6
+  highlights:
+  - Property managers can now create inspections directly from the platform.
+  - The AI concierge can now resolve a resident's e-sign link on demand when the signing request email
+    wasn't received.
+  - The prospect owner now automatically follows the first tour's owner, so reporting reflects who actually
+    runs the tour.
+  breaking: false
+- date: '2026-08-04'
+  version: v2.4.42
+  frontend_version: v3.25.43
+  title: Venn Platform Release 2026-08-04
+  counts:
+    features: 4
+    improvements: 2
+    fixes: 7
+  highlights:
+  - Property managers can now offer relocating move-outs a choice of sister communities, each shown as
+    a card with the community name, state, photo, and a link to its website.
+  - A new inspection details view lets teams review inspection items, respond to them, and attach files.
+  - The application ID verification step can now be re-run when an initial check fails or needs another
+    attempt.
+  breaking: false
+- date: '2026-08-02'
+  version: v2.4.41
+  frontend_version: v3.25.42
+  title: Venn Platform Release 2026-08-02
+  counts:
+    features: 2
+    improvements: 2
+    fixes: 3
+  highlights:
+  - Concierge can now surface membership entitlements such as in-home delivery, premium events, and amenity
+    perks when residents ask about their benefits.
+  - Property managers can generate PDF summary reports of application details on demand.
+  - Concierge now recognizes a wider range of perk questions, including tickets, free or comped entry,
+    promo codes, and member rates, and answers them on the first ask.
+  breaking: false
+- date: '2026-07-30'
+  version: v2.4.39
+  frontend_version: v3.25.41
+  title: Venn Platform Release 2026-07-30
+  counts:
+    features: 2
+    improvements: 5
+    fixes: 4
+  highlights:
+  - Property managers can now manage resident documents from a single centralized system, with permissions
+    and audience scoping across modules.
+  - Maintenance teams get a new maintenance settings screen for managing technician capabilities.
+  - Package tables can now be sorted, making it easier to find specific packages.
+  breaking: false
+- date: '2026-07-27'
+  version: v2.4.37
+  frontend_version: v3.25.39
+  title: Venn Platform Release 2026-07-27
+  counts:
+    features: 1
+    improvements: 2
+    fixes: 4
+  highlights:
+  - Residents can now browse and filter amenities by category, and the AI concierge uses these categories
+    to tell similar amenities apart.
+  - The hub now displays concierge cards.
+  breaking: false
+- date: '2026-07-26'
+  version: v2.4.36
+  frontend_version: v3.25.38
+  title: Venn Platform Release 2026-07-26
+  counts:
+    features: 3
+    improvements: 2
+    fixes: 4
+  highlights:
+  - Property managers can now set whether a membership plan starts on the lease start date or move-in
+    date and can enable auto-renewal, with plans automatically renewing at the current tier price or reconciling
+    against a new lease.
+  - When an escalation is handed back, staff can now save the resolution to the knowledge base through
+    a learning prompt so the AI agent can answer similar questions in the future.
+  - Teams can now export RealPage ledger data as a downloadable zip directly from the internal report
+    pages.
+  breaking: false
+- date: '2026-07-23'
+  version: v2.4.34
+  frontend_version: v3.25.37
+  title: Venn Platform Release 2026-07-23
+  counts:
+    features: 0
+    improvements: 1
+    fixes: 2
+  highlights:
+  - Residents submitting urgent maintenance requests now see the building's emergency contact number highlighted
+    for faster help.
+  breaking: false
+- date: '2026-07-23'
+  version: v2.4.33
+  frontend_version: v3.25.36
+  title: Venn Platform Release 2026-07-23
+  counts:
+    features: 4
+    improvements: 3
+    fixes: 9
+  highlights:
+  - Property managers can now automatically turn off the AI agent for all leads from a specific source,
+    such as Affordable.
+  - Maintenance teams can now create work orders to track unit-level tasks and their external statuses.
+  - Maintenance teams can now track unit turns through a new data model and API.
+  breaking: false
+- date: '2026-07-21'
+  version: v2.4.31
+  frontend_version: v3.25.34
+  title: Venn Platform Release 2026-07-21
+  counts:
+    features: 9
+    improvements: 6
+    fixes: 6
+  highlights:
+  - Property managers can now review a pre-renewal sentiment discovery workflow that proactively surfaces
+    renewal-risk residents ahead of their renewal.
+  - Residents and staff can now join an event waitlist, and managers can manage waitlisted attendees once
+    an event reaches capacity.
+  - Managers can now open a dedicated work order details view to review maintenance request information.
+  breaking: false
+- date: '2026-07-19'
+  version: v2.4.30
+  frontend_version: v3.25.33
+  title: Venn Platform Release 2026-07-19
+  counts:
+    features: 6
+    improvements: 1
+    fixes: 4
+  highlights:
+  - Property managers can now filter the calendar by community, with the building list narrowing to the
+    selected community, and a redesigned Schedule-Tour experience that checks real availability before
+    booking.
+  - Managers can now set each unit's rent type from a PMS-sourced value, with a mapping screen per integration,
+    a warning banner for unmapped units, a rent type segment filter, and automatic enrollment when rent
+    type changes.
+  - Managers can now edit resident pets, vehicles, and date of birth, with those changes written back
+    to the property management system.
+  breaking: false
+- date: '2026-07-16'
+  version: v2.4.29
+  frontend_version: v3.25.31
+  title: Venn Platform Release 2026-07-16
+  counts:
+    features: 3
+    improvements: 3
+    fixes: 10
+  highlights:
+  - Property managers can now turn individual staff email notifications on or off for tasks.
+  - A new move-out checklist joins the existing move-in and inspection checklists, giving residents and
+    property managers a guided move-out experience.
+  - Related automated prospect emails now group into conversation threads, keeping tour updates, application
+    invites, outreach steps, and nudges tidy in the inbox.
+  breaking: false
+- date: '2026-07-15'
+  version: v2.4.28
+  frontend_version: v3.25.30
+  title: Venn Platform Release 2026-07-15
+  counts:
+    features: 2
+    improvements: 4
+    fixes: 5
+  highlights:
+  - A new move-in checklist tool in the AI concierge guides new residents through completing their move-in
+    steps such as setting up renter's insurance and utilities.
+  - Property managers can now assign technicians to service requests with a dedicated technician record.
+  - Unit fees now sync automatically from Engrain, keeping deposit and termination fees accurate in lease
+    flows.
+  breaking: false
+- date: '2026-07-14'
+  version: v2.4.26
+  frontend_version: v3.25.28
+  title: Venn Platform Release 2026-07-14
+  counts:
+    features: 5
+    improvements: 3
+    fixes: 2
+  highlights:
+  - Property managers can now apply tags to units to organize and filter them.
+  - Membership tiers can now scope premium amenity access to specific buildings, so residents only see
+    the amenities their tier grants at each location.
+  - The maintenance module now houses service requests, giving teams a dedicated place to manage them.
+  breaking: false
+- date: '2026-07-13'
+  version: v2.4.25
+  frontend_version: v3.25.27
+  title: Venn Platform Release 2026-07-13
+  counts:
+    features: 1
+    improvements: 2
+    fixes: 3
+  highlights:
+  - Residents can now ask the AI concierge about a task and be taken directly to the relevant section
+    of the app, such as submitting a service request, booking an amenity, or making a payment.
+  - Residents asking the AI concierge about an amenity by name now get a focused response, with the concierge
+    asking clarifying questions instead of returning the full amenities list.
+  breaking: false
+- date: '2026-07-13'
+  version: v2.4.23
+  frontend_version: v3.25.25
+  title: Venn Platform Release 2026-07-13
+  counts:
+    features: 2
+    improvements: 6
+    fixes: 4
+  highlights:
+  - Property managers can now edit resident pets, vehicles, and dates of birth in the Hub, with changes
+    pushed automatically to the connected property management system.
+  - The AI Concierge now includes a manager-authored knowledge base organized by topic and question, delivering
+    answers scoped to each portfolio, community, and building, with per-question retrieval and helpfulness
+    stats.
+  - Managers can now see a "seen" indication on AI emails, matching the existing indicator for other messages.
+  breaking: false
+- date: '2026-07-09'
+  version: v2.4.22
+  frontend_version: v3.25.24
+  title: Venn Platform Release 2026-07-09
+  counts:
+    features: 3
+    improvements: 2
+    fixes: 4
+  highlights:
+  - Residents can now join a waitlist when an event is full and are notified when a seat opens, with the
+    first to respond claiming it.
+  - Applicants can now share their gender identity during the application process.
+  - Property managers can now view available and selected early-signing renewal incentives directly in
+    the unit renewal tab.
+  breaking: false
+- date: '2026-07-08'
+  version: v2.4.21
+  frontend_version: v3.25.23
+  title: Venn Platform Release 2026-07-08
+  counts:
+    features: 4
+    improvements: 2
+    fixes: 4
+  highlights:
+  - Property managers can now configure the list of accepted income documents shown on the applicant income-verification
+    step per building.
+  - Applicants can now select their gender during the personal-details step of the application.
+  - Renewal forms now pre-fill a resident's current pets and vehicles in the additional information section.
+  breaking: false
+- date: '2026-07-07'
+  version: v2.4.20
+  frontend_version: v3.25.22
+  title: Venn Platform Release 2026-07-07
+  counts:
+    features: 0
+    improvements: 2
+    fixes: 1
+  highlights:
+  - Prospect preferences now support multiple choices for unit, layout, beds, baths, lease term, and source.
+  breaking: false
+- date: '2026-07-06'
+  version: v2.4.18
+  frontend_version: v3.25.21
+  title: Venn Platform Release 2026-07-06
+  counts:
+    features: 1
+    improvements: 3
+    fixes: 0
+  highlights:
+  - Front desk staff can now categorize packages by additional types and record their storage location
+    when logging deliveries.
+  - Leasing teams can now select multiple options for prospect preferences, including unit, layout, beds,
+    baths, lease term, and source.
+  breaking: false
+- date: '2026-07-06'
+  version: v2.4.17
+  frontend_version: v3.25.20
+  title: Venn Platform Release 2026-07-06
+  counts:
+    features: 5
+    improvements: 3
+    fixes: 5
+  highlights:
+  - Property managers can now freeze the renewal AI agent, which stops both its replies and the nurture
+    workflow's email and SMS messages.
+  - System admins can now manage phone senders from a dedicated Phone Settings tab in Hub, including SMS/RCS
+    configuration, allowed buildings and communities, and default selection.
+  - The Resident 360 overview now shows Pets and Vehicles sections.
+  breaking: false
+- date: '2026-07-05'
+  version: v2.4.16
+  frontend_version: v3.25.19
+  title: Venn Platform Release 2026-07-05
+  counts:
+    features: 2
+    improvements: 5
+    fixes: 5
+  highlights:
+  - Automations can now include dynamic values for a building's phone number, email, and contact name.
+  - System administrators can now see a copyable lease ID on the resident profile card.
+  - Property managers now see a new table view for managing maintenance requests.
+  breaking: false
+- date: '2026-07-01'
+  version: v2.4.15
+  frontend_version: v3.25.18
+  title: Venn Platform Release 2026-07-01
+  counts:
+    features: 6
+    improvements: 4
+    fixes: 7
+  highlights:
+  - Property owners and Venn team members can now compose messages under the AI agent's identity using
+    a new "Reply as AI" option, so a human can step in without breaking the conversation.
+  - Users can now subscribe to notifications from the unified activity feed.
+  - Prospect and resident tables now include action-item and AI-communication filters, so teams can quickly
+    find who needs attention.
+  breaking: false
+- date: '2026-06-30'
+  version: v2.4.14
+  frontend_version: v3.25.17
+  title: Venn Platform Release 2026-06-30
+  counts:
+    features: 9
+    improvements: 8
+    fixes: 4
+  highlights:
+  - Property managers can now ghost-write messages with a "Reply as AI" option in the email and SMS composer,
+    keeping replies attributed to the AI agent so conversations stay seamless.
+  - The renewal AI agent now supports a dedicated knowledge base so it can answer renewal questions with
+    relevant content.
+  - Residents can now complete renewals through a new renewal widget in the web portal.
+  breaking: false
+- date: '2026-06-24'
+  version: v2.4.13
+  frontend_version: v3.25.15
+  title: Venn Platform Release 2026-06-24
+  counts:
+    features: 3
+    improvements: 0
+    fixes: 1
+  highlights:
+  - Property managers can now share an event directly to the resident feed as a featured post.
+  - Residents can ask open-ended questions in surveys with a new "Ask me anything" option powered by AI.
+  - Automations can now target specific resident segments, so the right audience receives each automated
+    message.
+  breaking: false
+- date: '2026-06-23'
+  version: v2.4.12
+  frontend_version: v3.25.14
+  title: Venn Platform Release 2026-06-23
+  counts:
+    features: 3
+    improvements: 0
+    fixes: 0
+  highlights:
+  - Property managers can now set per-night pricing for overnight amenities, including maximum nights
+    and tiered pricing breakpoints.
+  - Residents now see an itemized price breakdown when booking overnight amenities, with a pricing snapshot
+    saved on reservation details.
+  - The communication feed now displays inquiry content alongside other messages.
+  breaking: false
+- date: '2026-06-23'
+  version: v2.4.11
+  frontend_version: v3.25.13
+  title: Venn Platform Release 2026-06-23
+  counts:
+    features: 0
+    improvements: 2
+    fixes: 2
+  highlights:
+  - The AI leasing agent now responds in clear, natural language without self-narration, hedging, or internal
+    jargon.
+  breaking: false
+- date: '2026-06-23'
+  version: v2.4.10
+  frontend_version: v3.25.12
+  title: Venn Platform Release 2026-06-23
+  counts:
+    features: 2
+    improvements: 3
+    fixes: 2
+  highlights:
+  - Property managers can now view amenity reservation refunds broken down into gross, processor fee,
+    and net amounts, with refunds processed on the net amount.
+  - Resident profiles now capture pets, vehicles, and date of birth from the property management system,
+    with date of birth editable in Manager Hub.
+  - The hub shell now opens in dark mode by default.
+  breaking: false
+- date: '2026-06-22'
+  version: v2.4.9
+  frontend_version: v3.25.10
+  title: Venn Platform Release 2026-06-22
+  counts:
+    features: 2
+    improvements: 4
+    fixes: 8
+  highlights:
+  - Property managers and concierge staff can now see who created a guest reservation, with an "Added
+    by" row in the guest details showing whether a resident or staff member booked it.
+  - Resident profiles now display pets, date of birth, and vehicles synced from your property management
+    system, with manager-editable date of birth.
+  - The hub leasing report now offers Price range, Layout, Floor, and Square footage filters that match
+    your analytics reports.
+  breaking: false
+- date: '2026-06-18'
+  version: v2.4.8
+  frontend_version: v3.25.9
+  title: Venn Platform Release 2026-06-18
+  counts:
+    features: 1
+    improvements: 1
+    fixes: 2
+  highlights:
+  - Inquiry content now appears directly in the communication feed.
+  - Amenity payments made through Stripe are now recorded in the Venn ledger for over-the-counter cases,
+    with payment and PMS settings validated so unsupported configurations are flagged.
+  breaking: false
+- date: '2026-06-18'
+  version: v2.4.7
+  frontend_version: v3.25.7
+  title: Venn Platform Release 2026-06-18
+  counts:
+    features: 1
+    improvements: 4
+    fixes: 5
+  highlights:
+  - Inquiry details now appear directly in the communication feed, giving leasing teams full context alongside
+    their conversations.
+  - A redesigned communication sending box turns branding off by default for prospect messages and disables
+    SMS sending when no phone number is on file.
+  breaking: false
+- date: '2026-06-17'
+  version: v2.4.6
+  frontend_version: v3.25.6
+  title: Venn Platform Release 2026-06-17
+  counts:
+    features: 5
+    improvements: 4
+    fixes: 3
+  highlights:
+  - Residents can set an away notice, and onsite teams now receive related notifications and tasks while
+    a resident is away.
+  - A new away-notice view in the resident profile lets onsite teams see when a resident is away.
+  - Marketplace offerings can now be published to multiple communities at once.
+  breaking: false
+- date: '2026-06-16'
+  version: v2.4.5
+  frontend_version: v3.25.5
+  title: Venn Platform Release 2026-06-16
+  counts:
+    features: 1
+    improvements: 1
+    fixes: 2
+  highlights:
+  - A move-in calendar view gives teams a clearer schedule of upcoming move-ins.
+  - PMS sync now respects Yardi's per-method API rate limits, so hourly syncs no longer fail buildings
+    when those limits are reached.
+  breaking: false
+- date: '2026-06-15'
+  version: v2.4.4
+  frontend_version: v3.25.4
+  title: Venn Platform Release 2026-06-15
+  counts:
+    features: 3
+    improvements: 8
+    fixes: 3
+  highlights:
+  - A leasing-chat widget on public property websites now answers prospect questions about units, amenities,
+    properties, and frequently asked topics.
+  - A new automation library lets teams trigger workflows from social event publications, poll creation,
+    task-list status changes, inspection checklist updates, and escalations.
+  - A search button in the Hub header now opens the global spotlight search in both classic and AI modes,
+    with a smooth open-and-close animation.
+  breaking: false
+- date: '2026-06-14'
+  version: v2.4.3
+  frontend_version: v3.25.3
+  title: Venn Platform Release 2026-06-14
+  counts:
+    features: 0
+    improvements: 2
+    fixes: 1
+  highlights:
+  - Visitor records now capture the most recent check-in and check-out dates.
+  breaking: false
+- date: '2026-06-11'
+  version: v2.4.2
+  frontend_version: v3.25.2
+  title: Venn Platform Release 2026-06-11
+  counts:
+    features: 1
+    improvements: 1
+    fixes: 0
+  highlights:
+  - Agents can now capture a required reason and category when a prospect is marked as Lost, with the
+    reason shown in the prospect profile.
+  - The rent concession addendum now includes any monthly concession, such as parking credits, in the
+    monthly rent concessions.
+  breaking: false
+- date: '2026-06-11'
+  version: v2.4.1
+  frontend_version: v3.25.1
+  title: Venn Platform Release 2026-06-11
+  counts:
+    features: 6
+    improvements: 2
+    fixes: 3
+  highlights:
+  - Property managers can now capture a required reason whenever a prospect is marked as Lost, and view
+    it on the prospect profile.
+  - A new renewals view lists the lease contracts property managers should act on, with renewal details
+    available for each contract.
+  - Events now support a free-text location field, giving teams the flexibility to enter any location.
+  breaking: false
+- date: '2026-06-10'
+  version: v2.4.0
+  frontend_version: v3.25.0
+  title: Venn Platform Release 2026-06-10
+  counts:
+    features: 4
+    improvements: 3
+    fixes: 7
+  highlights:
+  - Property managers can now add multiple guarantors throughout the application and lease flows.
+  - A chat channel now appears in the Hub communication tab alongside SMS and email, with chat conversations
+    shown in the unified resident and prospect feed.
+  - The PMS sync workflow now syncs renewal offers, and sync jobs can be filtered by renewal offer.
+  breaking: false
+- date: '2026-06-09'
+  version: v2.3.0
+  frontend_version: v3.24.1
+  title: Venn Platform Release 2026-06-09
+  counts:
+    features: 0
+    improvements: 1
+    fixes: 1
+  highlights:
+  - Resident balances now reflect the live household balance synced from your property management system
+    for consistent figures across screens.
+  breaking: false
+- date: '2026-06-09'
+  version: v2.2.0
+  frontend_version: v3.24.0
+  title: Venn Platform Release 2026-06-09
+  counts:
+    features: 1
+    improvements: 1
+    fixes: 2
+  highlights:
+  - Property managers can now set up an AI-driven renewal agent to send lease renewal messages to residents.
+  - Ledger and payment descriptions for amenities, memberships, and concessions now read more accurately
+    when syncing to your property management system.
+  breaking: false
+- date: '2026-06-08'
+  version: v2.1.3
+  frontend_version: v3.23.2
+  title: Venn Platform Release 2026-06-08
+  counts:
+    features: 1
+    improvements: 1
+    fixes: 1
+  highlights:
+  - A new "Lease E-Signatures" action in the application review menu lists each signer, shows whether
+    they have signed, and lets you copy or send their signing link on demand.
+  - Rentable item availability now reflects the applicant's preferred move-in date, showing items available
+    from that date through the following year.
+  breaking: false
+- date: '2026-06-08'
+  version: v2.1.2
+  frontend_version: null
+  title: Venn Platform Release 2026-06-08
+  counts:
+    features: 1
+    improvements: 1
+    fixes: 2
+  highlights:
+  - Property managers can now fetch approved renewal offers, including renewal selections and incentives,
+    directly from Yardi.
+  - Rental applications now include the applicant's preferred move-in date in public listing data.
+  breaking: false
+- date: '2026-06-07'
+  version: v2.1.1
+  frontend_version: null
+  title: Venn Platform Release 2026-06-07
+  counts:
+    features: 0
+    improvements: 1
+    fixes: 0
+  highlights:
+  - Reworked payouts with an itemized model, making payout amounts easier to track and reconcile.
+  breaking: false
+- date: '2026-06-07'
+  version: v2.1.0
+  frontend_version: v3.23.0
+  title: Venn Platform Release 2026-06-07
+  counts:
+    features: 5
+    improvements: 3
+    fixes: 5
+  highlights:
+  - Property managers can now turn the AI agent off for specific prospects and residents.
+  - A redesigned building dashboard adds dedicated "My Apartment" and "My Building" sections for residents.
+  - Activity logs now capture AI-agent status changes on prospects and residents.
+  breaking: false
+- date: '2026-06-04'
+  version: v2.0.10
+  frontend_version: v3.22.6
+  title: Venn Platform Release 2026-06-04
+  counts:
+    features: 1
+    improvements: 2
+    fixes: 0
+  highlights:
+  - Introduced a marketplace admin area for managing marketplace offerings.
+  - Applicants are now automatically connected to their prospect record, cutting down on duplicate data
+    entry.
+  breaking: false
+- date: '2026-06-03'
+  version: v2.0.9
+  frontend_version: v3.22.4
+  title: Venn Platform Release 2026-06-03
+  counts:
+    features: 0
+    improvements: 3
+    fixes: 1
+  highlights:
+  - Payouts now show the related organization and account details for easier review.
+  breaking: false
+- date: '2026-06-02'
+  version: v2.0.5
+  frontend_version: v3.22.1
+  title: Venn Platform Release 2026-06-02
+  counts:
+    features: 0
+    improvements: 2
+    fixes: 1
+  highlights:
+  - Payments and subscriptions can now be reconciled directly in Venn.
+  breaking: false
+- date: '2026-06-01'
+  version: v2.0.3
+  frontend_version: v3.22.0
+  title: Venn Platform Release 2026-06-01
+  counts:
+    features: 4
+    improvements: 5
+    fixes: 4
+  highlights:
+  - Create tasks directly from workflows, with a streamlined task-management experience.
+  - Send message blasts to a prospect to reach many people at once.
+  - Search across member groups to find residents faster.
+  breaking: false
+- date: '2026-05-28'
+  version: v2.0.2
+  frontend_version: v3.21.3
+  title: Venn Platform Release 2026-05-28
+  counts:
+    features: 1
+    improvements: 2
+    fixes: 1
+  highlights:
+  - Capture lease start and end dates on applications, and set a preferred move-in date when creating
+    a lease.
+  - Update lease start and end dates directly in the hub.
+  breaking: false
+- date: '2026-05-25'
+  version: v2.0.0
+  frontend_version: v3.21.0
+  title: Venn Platform Release 2026-05-25
+  counts:
+    features: 5
+    improvements: 4
+    fixes: 1
+  highlights:
+  - Admins can now impersonate a user to troubleshoot issues from that person's perspective.
+  - Import membership concessions in bulk from a CSV.
+  - '"Away notices" add a system segment for residents who are currently away.'
+  breaking: false
+- date: '2026-05-19'
+  version: v1.99.6
+  frontend_version: v3.20.7
+  title: Venn Platform Release 2026-05-19
+  counts:
+    features: 2
+    improvements: 3
+    fixes: 1
+  highlights:
+  - Hub login now uses a 6-digit masked one-time code with lockout protection.
+  - Membership renewals support changing only the end date.
+  - Hardened authentication against user-enumeration, with a cap on one-time-code attempts.
+  breaking: false
+- date: '2026-05-18'
+  version: v1.99.4
+  frontend_version: v3.20.5
+  title: Venn Platform Release 2026-05-18
+  counts:
+    features: 2
+    improvements: 2
+    fixes: 1
+  highlights:
+  - Distribute leads evenly with a new round-robin leasing-agent assignment option for tours.
+  - Applicants can now add pets and vehicles in their application details.
+  - Paused applications are handled gracefully across checkout and lease flows.
+  breaking: false
+- date: '2026-05-15'
+  version: v1.99.3
+  frontend_version: v3.20.4
+  title: Venn Platform Release 2026-05-15
+  counts:
+    features: 1
+    improvements: 4
+    fixes: 1
+  highlights:
+  - Same-day tour slots now show friendly relative times (for example, "in 2 hours").
+  - Clearer, more informative error notifications across the applicant app and the hub.
+  breaking: false
+x-evidence:
+  fetched: '2026-09-02'
+  url: https://docs.venn.city/
+  http_status: 200
+  content_type: text/html
+  bundle: https://docs.venn.city/assets/Tag-fDhROQn9.js
+  release_documents: 65

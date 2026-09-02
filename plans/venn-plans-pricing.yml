@@ -1,0 +1,32 @@
+generated: '2026-09-02'
+method: searched
+source: https://venn.city/book-a-demo
+note: >-
+  Venn publishes no pricing. There is no /pricing page (HTTP 404), no plans page,
+  and no price appears anywhere in the site navigation — the single commercial call
+  to action across venn.city and every solution page is "Let's talk!", which links
+  to https://venn.city/book-a-demo. Venn sells B2B to multifamily owner-operators
+  through a sales motion; pricing is negotiated per portfolio. This is a recorded
+  zero, not an unchecked field.
+plan_count: 0
+plans: []
+pricing_model: contact-sales
+pricing_page: null
+currency: null
+free_tier: false
+self_serve_signup: false
+self_serve_note: >-
+  There is no self-service sign-up for the platform. dashboard.venn.city is an
+  operator login for existing customers; the resident-facing surface is a mobile
+  app provisioned by the property manager.
+sales_contact: https://venn.city/book-a-demo
+probed:
+  - url: https://venn.city/pricing
+    status: 404
+  - url: https://venn.city/book-a-demo
+    status: 200
+  - url: https://venn.city/solutions/venn-rms
+    status: 200
+    result: solution page, no price
+x-evidence:
+  checked: '2026-09-02'

@@ -1,0 +1,79 @@
+generated: '2026-09-02'
+method: searched
+source: https://docs.venn.city/
+note: >-
+  Venn publishes dated platform release notes and versions every release, but
+  publishes no API versioning policy, no deprecation policy, no sunset commitment,
+  no SLA and no status page. The API-level facts below are read out of the live
+  schema; the platform-level facts are read out of the release notes.
+versioning:
+  api_scheme: none
+  api_detail: >-
+    The GraphQL endpoint is unversioned. `/production/` in
+    https://api.venn.city/production/graphql is an AWS API Gateway stage name, not
+    an API version, and no version header or field appears in the contract.
+  platform_scheme: semver
+  platform_detail: >-
+    Two independently versioned tracks are published per release — backend and
+    frontend. Latest observed: backend v2.4.58 / frontend v3.25.59 (2026-09-01).
+  docs: https://docs.venn.city/
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: unknown
+  mechanism: GraphQL @deprecated directive
+  deprecated_members: 10
+  detail: >-
+    Ten schema members carry `@deprecated` with a stated replacement, which is a
+    real in-contract deprecation signal even though no policy document exists. No
+    removal date is given for any of them, and nothing states how long a deprecated
+    field remains callable.
+  examples:
+    - member: Mutation.requestCancelationSubscriptionContract
+      reason: Use requestSubscriptionContractCancellation.
+    - member: Mutation.subscribeServiceProduct
+      reason: Use SubscribeToProduct.
+    - member: Member.hoods
+      reason: Hoods is no longer supported, use hood instead
+    - member: LeaseContract.contractTimeline
+      reason: Replaced by computedTimeline
+    - member: MembershipContract.contractTimeline
+      reason: Replaced by computedTimeline
+sla:
+  url: null
+  published: false
+status_page:
+  url: null
+  published: false
+  probed:
+    - url: https://status.venn.city/
+      status: 302
+      result: >-
+        Not a status page. venn.city carries a wildcard DNS record, so
+        status.venn.city resolves and redirects like every other unregistered
+        subdomain. Confirmed by resolving a control name
+        (zzzznotreal.venn.city) to the same addresses.
+    - url: https://venn.city/status
+      status: 404
+release_cadence:
+  releases_observed: 65
+  window: 2026-05-15 to 2026-09-01
+  rate: roughly 4-5 releases per week
+  changelog: ../changelog/venn-changelog.yml
+  breaking_changes_declared: 0
+maturity:
+  api_surface: production
+  contract_public: true
+  contract_note: >-
+    Anonymous GraphQL introspection is enabled, so the contract is discoverable —
+    but there is no developer portal, no reference documentation, no versioning
+    policy and no deprecation policy wrapped around it.
+x-evidence:
+  checked: '2026-09-02'
+  evidence:
+    - url: https://docs.venn.city/
+      status: 200
+    - url: https://api.venn.city/production/graphql
+      status: 200
+    - url: https://venn.city/status
+      status: 404

@@ -1,0 +1,36 @@
+# Front Door AI Index — venn — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: venn
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: venn.city
+  final_host: venn.city
+  ownership: own
+  owner: venn
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 118
+  host_score: 118
+  density: 3.59
+  words: 32838
+  tiers:
+    agentic: 9
+    core: 108
+    model: 1
+  ambiguous: 103
+  top_terms:
+    AI: 105
+    agent: 50
+    automation: 22
+    intelligence: 18
+    smart: 11
+    artificial intelligence: 3
+    prompts: 3
+    embedding: 2
+    fine-tune: 2
+    predictive: 2
+    AI agent: 1
+    ChatGPT: 1

@@ -20,7 +20,7 @@ specificationVersion: '0.20'
 created: '2026-09-02'
 modified: '2026-09-02'
 tags:
-- Real-Estate
+- Real Estate
 - Property Management
 - Multifamily
 - Resident Experience
@@ -41,6 +41,7 @@ tags_raw:
 - Payments
 - GraphQL
 - Mobile Apps
+- Real-Estate
 apis:
 - name: Venn Tenant GraphQL API
   description: >-
